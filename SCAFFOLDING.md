@@ -8,6 +8,11 @@ more powerful than the default scaffolds.
 
 ## Implemented Scaffolds
 
+```bash
+# Set up invitation key management
+rails generate super_scaffold InvitationKey Team key:text_field
+```
+
 ## Planned Scaffolds
 
 Scaffolds in this list have not yet been executed
@@ -30,7 +35,4 @@ rails generate super_scaffold PromptSection Prompt,Team name:text_field descript
 rails generate super_scaffold PromptExecution Prompt,Team compiled_parameters:text_area parameters_summary:text_area model_id:super_select{class_name=IntelligenceModel}
 
 rails generate super_scaffold Output Prompt,Team label:text_field results:text_area input_tokens:number_field output_tokens:number_field message_id:text_field user_rating:number_field
-
-# Set up invitation key management
-rails generate super_scaffold InvitationKey Team key:text_field
 ```
