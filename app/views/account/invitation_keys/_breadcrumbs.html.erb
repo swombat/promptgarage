@@ -1,0 +1,8 @@
+<% invitation_key ||= @invitation_key %>
+<% team ||= @team || invitation_key&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :invitation_keys] %>
+<% if invitation_key&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: invitation_key.label_string, url: [:account, invitation_key] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'invitation_keys' %>

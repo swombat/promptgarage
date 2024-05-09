@@ -10,3 +10,8 @@ BulletTrain.configure do |config|
   # Change the parent class you want incoming webhooks to inherit from.
   config.incoming_webhooks_parent_class_name = "ApplicationRecord"
 end
+
+# Override to use keys instead of ENV
+def invitation_only?
+  InvitationKey.all.any?
+end

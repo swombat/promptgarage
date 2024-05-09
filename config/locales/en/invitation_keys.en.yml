@@ -1,0 +1,93 @@
+en:
+  invitation_keys: &invitation_keys
+    label: &label Invitation Keys
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Invitation Key
+      create: Create Invitation Key
+      edit: Edit Invitation Key
+      update: Update Invitation Key
+      destroy: Remove Invitation Key
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{invitation_key_name}? This will also remove any child resources and can't be undone.
+    invitation_key:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Invitation Key ID
+      team_id:
+        heading: Team ID
+      key:
+        _: &key Key
+        label: *key
+        heading: *key
+        api_title: *key
+        api_description: *key
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Invitation Keys"
+      index: "List Invitation Keys"
+      create: "Add a New Invitation Key"
+      member_actions: "Actions for an Individual Invitation Key"
+      show: "Retrieve a Invitation Key"
+      update: "Update a Invitation Key"
+      destroy: "Delete a Invitation Key"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Invitation Keys"
+      contexts:
+        team:
+          header: Invitation Keys
+          description: Below is a list of Invitation Keys that have been added for %{team_name}.
+          description_empty: No Invitation Keys have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{invitation_key_name}"
+      header: Invitation Key Details
+      description: Below are the details we have for %{invitation_key_name}.
+      manage_description: You'll also find options for updating these details or removing %{invitation_key_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Invitation Key for %{team_name}"
+      header: New Invitation Key Details
+      description: Please provide the details of the new Invitation Key you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{invitation_key_name}"
+      header: Edit Invitation Key Details
+      description: You can update the details or settings for %{invitation_key_name} below.
+      form: *form
+    notifications:
+      created: Invitation Key was successfully created.
+      updated: Invitation Key was successfully updated.
+      destroyed: Invitation Key was successfully destroyed.
+  account:
+    invitation_keys: *invitation_keys
+  activerecord:
+    attributes:
+      invitation_key:
+        key: *key
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

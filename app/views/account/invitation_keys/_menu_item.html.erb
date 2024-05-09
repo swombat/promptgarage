@@ -1,0 +1,10 @@
+<% if can? :read, InvitationKey.new(team: current_team) %>
+  <%= render 'account/shared/menu/item', {
+    url: main_app.polymorphic_path([:account, current_team, :invitation_keys]),
+    label: t('invitation_keys.navigation.label'),
+  } do |p| %>
+    <% p.icon do %>
+      <i class="<%= t('invitation_keys.navigation.icon') %>"></i>
+    <% end %>
+  <% end %>
+<% end %>
