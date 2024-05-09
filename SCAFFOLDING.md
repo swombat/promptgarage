@@ -14,7 +14,7 @@ Scaffolds in this list have not yet been executed
 
 ```bash
 # Core stuff
-rails generate super_scaffold IntelligenceCredential Team api_key:text_field class_name:text_field
+rails generate super_scaffold IntelligenceCredential Team api_key:text_field class_name:super_select
 rails generate super_scaffold IntelligenceModel IntelligenceCredential,Team name:text_field
 
 # Prompts are organised inside projects
