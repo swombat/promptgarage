@@ -556,6 +556,8 @@ GEM
       redis-client (>= 0.22.0)
     redis-client (0.22.1)
       connection_pool
+    redis-namespace (1.11.0)
+      redis (>= 4)
     regexp_parser (2.9.0)
     reline (0.5.5)
       io-console (~> 0.5)
@@ -758,6 +760,7 @@ DEPENDENCIES
   rails_autoscale_agent
   rails_best_practices
   redis (~> 5.2.0)
+  redis-namespace
   rqrcode
   ruby-vips
   selenium-webdriver
@@ -774,7 +777,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.3.1
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.4.10

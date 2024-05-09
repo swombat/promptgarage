@@ -1,7 +1,7 @@
 {
-  "name": "untitled-application",
+  "name": "promptcraft",
   "version": "1.0.0",
-  "description": "Integrate Zapier with Untitled Application",
+  "description": "Integrate Zapier with PromptCraft",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -t 10000"
