@@ -1,0 +1,35 @@
+<%= render 'account/shared/page' do |page| %>
+  <% page.title t('.section') %>
+  <% page.body do %>
+    <%= cable_ready_updates_for @intelligence_credential do %>
+      <%= render 'account/shared/box', divider: true do |box| %>
+        <% box.title t('.header') %>
+        <% box.description do %>
+          <%= t('.description') %>
+          <%= t('.manage_description') if can? :manage, @intelligence_credential %>
+        <% end %>
+
+        <% box.body do %>
+          <% with_attribute_settings object: @intelligence_credential, strategy: :label do %>
+            <%= render 'shared/attributes/text', attribute: :api_key %>
+            <%= render 'shared/attributes/option', attribute: :class_name %>
+            <%# 🚅 super scaffolding will insert new fields above this line. %>
+          <% end %>
+        <% end %>
+
+        <% box.actions do %>
+          <%= link_to t('.buttons.edit'), [:edit, :account, @intelligence_credential], class: first_button_primary if can? :edit, @intelligence_credential %>
+          <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+          <%= button_to t('.buttons.destroy'), [:account, @intelligence_credential], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@intelligence_credential)) } if can? :destroy, @intelligence_credential %>
+          <%= link_to t('global.buttons.back'), [:account, @team, :intelligence_credentials], class: first_button_primary %>
+        <% end %>
+
+        <% box.raw_footer do %>
+          <%# 🚅 super scaffolding will insert new action model index views above this line. %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# 🚅 super scaffolding will insert new children above this line. %>
+  <% end %>
+<% end %>

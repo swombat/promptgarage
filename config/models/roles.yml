@@ -1,5 +1,6 @@
 default:
   models:
+    IntelligenceCredential: read
     InvitationKey: read
     Team: read
     Membership:
@@ -29,6 +30,7 @@ admin:
     - admin
     - editor
   models:
+    IntelligenceCredential: manage
     InvitationKey: manage
     Team: manage
     Membership: manage

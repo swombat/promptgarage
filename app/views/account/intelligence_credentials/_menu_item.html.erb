@@ -1,0 +1,10 @@
+<% if can? :read, IntelligenceCredential.new(team: current_team) %>
+  <%= render 'account/shared/menu/item', {
+    url: main_app.polymorphic_path([:account, current_team, :intelligence_credentials]),
+    label: t('intelligence_credentials.navigation.label'),
+  } do |p| %>
+    <% p.icon do %>
+      <i class="<%= t('intelligence_credentials.navigation.icon') %>"></i>
+    <% end %>
+  <% end %>
+<% end %>

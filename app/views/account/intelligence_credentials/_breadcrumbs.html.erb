@@ -1,0 +1,8 @@
+<% intelligence_credential ||= @intelligence_credential %>
+<% team ||= @team || intelligence_credential&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :intelligence_credentials] %>
+<% if intelligence_credential&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: intelligence_credential.label_string, url: [:account, intelligence_credential] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'intelligence_credentials' %>

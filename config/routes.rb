@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         end
 
         resources :invitation_keys
+        resources :intelligence_credentials
       end
     end
   end

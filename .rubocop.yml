@@ -1,0 +1,23 @@
+# Disable the cop that checks the length of classes
+Metrics/ClassLength:
+  Enabled: false
+
+# Disable the cop that checks the length of methods
+Metrics/MethodLength:
+  Enabled: false
+
+# You can also adjust other common metrics if needed
+Metrics/BlockLength:
+  Enabled: false
+
+# Ignore module length checks
+Metrics/ModuleLength:
+  Enabled: false
+
+# Adjust the maximum ABC size
+Metrics/AbcSize:
+  Max: 30  # Increase the limit as needed; default is usually 15
+
+# Alternatively, disable the ABC size cop entirely
+# Metrics/AbcSize:
+#   Enabled: false

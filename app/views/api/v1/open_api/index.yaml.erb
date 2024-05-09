@@ -23,6 +23,7 @@ components:
     <%= automatic_components_for Webhooks::Outgoing::Event %>
     <%= automatic_components_for Scaffolding::CompletelyConcrete::TangibleThing unless scaffolding_things_disabled? %>
     <%= automatic_components_for InvitationKey %>
+    <%= automatic_components_for IntelligenceCredential %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -58,4 +59,5 @@ paths:
   <%= automatic_paths_for Webhooks::Outgoing::Event, Team, except: %i[create update delete] %>
   <%= automatic_paths_for Scaffolding::CompletelyConcrete::TangibleThing, Scaffolding::AbsolutelyAbstract::CreativeConcept unless scaffolding_things_disabled? %>
   <%= automatic_paths_for InvitationKey, Team %>
+  <%= automatic_paths_for IntelligenceCredential, Team %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>
