@@ -32,7 +32,5 @@ rails generate super_scaffold PromptExecution Prompt,Project,Team label:text_fie
 Scaffolds in this list have not yet been executed.
 
 ```bash
-
-rails generate super_scaffold Output Prompt,Project,Team label:text_field results:text_area input_tokens:number_field output_tokens:number_field message_id:text_field user_rating:number_field
+rails generate super_scaffold Output PromptExecution,Prompt,Project,Team label:text_field results:text_area input_tokens:number_field output_tokens:number_field message_id:text_field user_rating:number_field
 ```
-

@@ -7,7 +7,7 @@ en:
       label: *label
       icon: fal fa-puzzle-piece
     buttons: &buttons
-      new: Add New Prompt Execution
+      new: Execute!...
       create: Create Prompt Execution
       edit: Edit Prompt Execution
       update: Update Prompt Execution

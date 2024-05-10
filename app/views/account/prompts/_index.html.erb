@@ -12,10 +12,10 @@
   <% cable_ready_updates_for context, collection do %>
     <%= render 'account/shared/box', pagy: pagy do |box| %>
       <% box.title t(".contexts.#{context.class.name.underscore}.header") %>
-      <% box.description do %>
-        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless prompts.any?}") %>
-        <%= render "shared/limits/index", model: prompts.model %>
-      <% end %>
+      <%# box.description do %>
+        <%#= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless prompts.any?}") %>
+        <%#= render "shared/limits/index", model: prompts.model %>
+      <%# end %>
 
       <% box.table do %>
         <% if prompts.any? %>
