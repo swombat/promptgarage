@@ -14,11 +14,15 @@ rails generate super_scaffold IntelligenceCredential Team api_key:text_field cla
 
 # Set up invitation key management
 rails generate super_scaffold InvitationKey Team key:text_field
+
+# Prompts are organised inside projects
+rails generate super_scaffold Project Team name:text_field description:trix_editor
+
 ```
 
 ## Planned Scaffolds
 
-Scaffolds in this list have not yet been executed
+Scaffolds in this list have not yet been executed.
 
 ```bash
 # Prompts are organised inside projects
