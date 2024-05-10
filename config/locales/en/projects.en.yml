@@ -1,0 +1,99 @@
+en:
+  projects: &projects
+    label: &label Projects
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: ti ti-ink-pen
+    buttons: &buttons
+      new: Add New Project
+      create: Create Project
+      edit: Edit Project
+      update: Update Project
+      destroy: Remove Project
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{project_name}? This will also remove any child resources and can't be undone.
+    project:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Project ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+        api_title: *description
+        api_description: *description
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Projects"
+      index: "List Projects"
+      create: "Add a New Project"
+      member_actions: "Actions for an Individual Project"
+      show: "Retrieve a Project"
+      update: "Update a Project"
+      destroy: "Delete a Project"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Projects"
+      contexts:
+        team:
+          header: Projects
+          description: Below is a list of Projects that have been added for %{team_name}.
+          description_empty: No Projects have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{project_name}"
+      header: Project Details
+      description: Below are the details we have for %{project_name}.
+      manage_description: You'll also find options for updating these details or removing %{project_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Project for %{team_name}"
+      header: New Project Details
+      description: Please provide the details of the new Project you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{project_name}"
+      header: Edit Project Details
+      description: You can update the details or settings for %{project_name} below.
+      form: *form
+    notifications:
+      created: Project was successfully created.
+      updated: Project was successfully updated.
+      destroyed: Project was successfully destroyed.
+  account:
+    projects: *projects
+  activerecord:
+    attributes:
+      project:
+        name: *name
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

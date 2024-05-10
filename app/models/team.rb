@@ -7,6 +7,7 @@ class Team < ApplicationRecord
 
   has_many :invitation_keys, dependent: :destroy, enable_cable_ready_updates: true
   has_many :intelligence_credentials, dependent: :destroy, enable_cable_ready_updates: true
+  has_many :projects, dependent: :destroy, enable_cable_ready_updates: true
   # 🚅 add has_many associations above.
 
   # 🚅 add oauth providers above.

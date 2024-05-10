@@ -33,6 +33,7 @@ shallow do
 
       resources :invitation_keys
       resources :intelligence_credentials
+      resources :projects
     end
   end
 end
