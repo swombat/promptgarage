@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_091943) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_093614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -230,6 +230,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091943) do
     t.index ["team_id"], name: "index_projects_on_team_id"
   end
 
+  create_table "prompts", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_prompts_on_parent_id"
+    t.index ["project_id"], name: "index_prompts_on_project_id"
+  end
+
   create_table "scaffolding_absolutely_abstract_creative_concepts", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "name"
@@ -409,6 +420,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091943) do
   add_foreign_key "oauth_applications", "teams"
   add_foreign_key "oauth_stripe_accounts", "users"
   add_foreign_key "projects", "teams"
+  add_foreign_key "prompts", "projects"
+  add_foreign_key "prompts", "prompts", column: "parent_id"
   add_foreign_key "scaffolding_absolutely_abstract_creative_concepts", "teams"
   add_foreign_key "scaffolding_completely_concrete_tangible_things", "scaffolding_absolutely_abstract_creative_concepts", column: "absolutely_abstract_creative_concept_id"
   add_foreign_key "scaffolding_completely_concrete_tangible_things_assignments", "memberships"

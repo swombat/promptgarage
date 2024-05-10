@@ -1,5 +1,6 @@
 default:
   models:
+    Prompt: read
     InputItem: read
     InputType: read
     Project: read
@@ -33,6 +34,7 @@ admin:
     - admin
     - editor
   models:
+    Prompt: manage
     InputItem: manage
     InputType: manage
     Project: manage

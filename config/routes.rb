@@ -72,6 +72,7 @@ Rails.application.routes.draw do
         resources :projects do
           resources :input_types
           resources :input_items
+          resources :prompts
         end
       end
     end

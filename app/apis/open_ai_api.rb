@@ -1,4 +1,4 @@
-require 'ruby-openai'
+require 'openai'
 
 class OpenAiApi < LlmApi
   def initialize(access_key:)
@@ -45,3 +45,5 @@ class OpenAiApi < LlmApi
     # end
   end
 end
+
+LlmApi.register(OpenAiApi)

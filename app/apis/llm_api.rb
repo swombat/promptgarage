@@ -33,5 +33,3 @@ class LlmApi
     end
   end
 end
-
-LlmApi.register(OpenAiApi, ClaudeApi)

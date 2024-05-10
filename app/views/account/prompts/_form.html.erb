@@ -1,0 +1,20 @@
+<% cancel_path ||= prompt.persisted? ? [:account, prompt] : [:account, @project, :prompts] %>
+
+<%= form_with model: prompt, url: (prompt.persisted? ? [:account, prompt] : [:account, @project, :prompts]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
+      <%= render 'shared/fields/trix_editor', method: :description %>
+      <%#= render 'shared/fields/super_select', method: :parent_id, options: {}, html_options: {},
+        choices: @prompt.valid_parents.map { |prompt| [prompt.label_string, prompt.id] } %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>

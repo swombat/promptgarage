@@ -1,0 +1,108 @@
+en:
+  prompts: &prompts
+    label: &label Prompts
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Prompt
+      create: Create Prompt
+      edit: Edit Prompt
+      update: Update Prompt
+      destroy: Remove Prompt
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{prompt_name}? This will also remove any child resources and can't be undone.
+    prompt:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Prompt ID
+      project_id:
+        heading: Project ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+        api_title: *description
+        api_description: *description
+      parent_id: &parent
+        _: &parent_id Parent
+        label: *parent_id
+        heading: *parent_id
+        api_title: *parent_id
+        api_description: *parent_id
+        placeholder: None
+      parent: *parent
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Prompts"
+      index: "List Prompts"
+      create: "Add a New Prompt"
+      member_actions: "Actions for an Individual Prompt"
+      show: "Retrieve a Prompt"
+      update: "Update a Prompt"
+      destroy: "Delete a Prompt"
+      fields: *fields
+    index:
+      section: "%{projects_possessive} Prompts"
+      contexts:
+        project:
+          header: Prompts
+          description: Below is a list of Prompts that have been added for %{project_name}.
+          description_empty: No Prompts have been added for %{project_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{prompt_name}"
+      header: Prompt Details
+      description: Below are the details we have for %{prompt_name}.
+      manage_description: You'll also find options for updating these details or removing %{prompt_name} from %{project_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Prompt for %{project_name}"
+      header: New Prompt Details
+      description: Please provide the details of the new Prompt you'd like to add to %{project_name}.
+      form: *form
+    edit:
+      section: "%{prompt_name}"
+      header: Edit Prompt Details
+      description: You can update the details or settings for %{prompt_name} below.
+      form: *form
+    notifications:
+      created: Prompt was successfully created.
+      updated: Prompt was successfully updated.
+      destroyed: Prompt was successfully destroyed.
+  account:
+    prompts: *prompts
+  activerecord:
+    attributes:
+      prompt:
+        name: *name
+        parent_id: *parent_id
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at
