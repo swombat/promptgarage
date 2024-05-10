@@ -1,0 +1,106 @@
+en:
+  prompt_sections: &prompt_sections
+    label: &label Prompt Sections
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Prompt Section
+      create: Create Prompt Section
+      edit: Edit Prompt Section
+      update: Update Prompt Section
+      destroy: Remove Prompt Section
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{prompt_section_name}? This will also remove any child resources and can't be undone.
+    prompt_section:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Prompt Section ID
+      prompt_id:
+        heading: Prompt ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+        api_title: *description
+        api_description: *description
+      contents:
+        _: &contents Contents
+        label: *contents
+        heading: *contents
+        api_title: *contents
+        api_description: *contents
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Prompt Sections"
+      index: "List Prompt Sections"
+      create: "Add a New Prompt Section"
+      member_actions: "Actions for an Individual Prompt Section"
+      show: "Retrieve a Prompt Section"
+      update: "Update a Prompt Section"
+      destroy: "Delete a Prompt Section"
+      fields: *fields
+    index:
+      section: "%{prompts_possessive} Prompt Sections"
+      contexts:
+        prompt:
+          header: Prompt Sections
+          description: Below is a list of Prompt Sections that have been added for %{prompt_name}.
+          description_empty: No Prompt Sections have been added for %{prompt_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{prompt_section_name}"
+      header: Prompt Section Details
+      description: Below are the details we have for %{prompt_section_name}.
+      manage_description: You'll also find options for updating these details or removing %{prompt_section_name} from %{prompt_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Prompt Section for %{prompt_name}"
+      header: New Prompt Section Details
+      description: Please provide the details of the new Prompt Section you'd like to add to %{prompt_name}.
+      form: *form
+    edit:
+      section: "%{prompt_section_name}"
+      header: Edit Prompt Section Details
+      description: You can update the details or settings for %{prompt_section_name} below.
+      form: *form
+    notifications:
+      created: Prompt Section was successfully created.
+      updated: Prompt Section was successfully updated.
+      destroyed: Prompt Section was successfully destroyed.
+  account:
+    prompt_sections: *prompt_sections
+  activerecord:
+    attributes:
+      prompt_section:
+        name: *name
+        contents: *contents
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

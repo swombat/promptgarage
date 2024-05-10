@@ -28,6 +28,7 @@ components:
     <%= automatic_components_for InputType %>
     <%= automatic_components_for InputItem %>
     <%= automatic_components_for Prompt %>
+    <%= automatic_components_for PromptSection %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -68,4 +69,5 @@ paths:
   <%= automatic_paths_for InputType, Project %>
   <%= automatic_paths_for InputItem, Project %>
   <%= automatic_paths_for Prompt, Project %>
+  <%= automatic_paths_for PromptSection, Prompt %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>

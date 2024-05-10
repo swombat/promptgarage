@@ -36,7 +36,9 @@ shallow do
       resources :projects do
         resources :input_types
         resources :input_items
-        resources :prompts
+        resources :prompts do
+          resources :prompt_sections, concerns: [:sortable]
+        end
       end
     end
   end

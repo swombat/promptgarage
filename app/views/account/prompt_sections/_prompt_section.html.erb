@@ -1,0 +1,25 @@
+<% prompt = @prompt || @prompt %>
+<% context ||= prompt %>
+<% collection ||= :prompt_sections %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: prompt_section do %>
+  <tr data-id="<%= prompt_section.id %>">
+    <%= render "shared/tables/checkbox", object: prompt_section %>
+    <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, prompt_section] %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, prompt_section %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt_section], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, prompt_section %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, prompt_section], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(prompt_section)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

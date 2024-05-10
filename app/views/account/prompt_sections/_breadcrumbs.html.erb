@@ -1,0 +1,8 @@
+<% prompt_section ||= @prompt_section %>
+<% prompt ||= @prompt || prompt_section&.prompt %>
+<%= render 'account/prompts/breadcrumbs', prompt: prompt %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, prompt, :prompt_sections] %>
+<% if prompt_section&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: prompt_section.label_string, url: [:account, prompt_section] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'prompt_sections' %>
