@@ -1,16 +1,16 @@
 <%= render 'account/shared/page' do |page| %>
   <% page.title t('.section') %>
   <% page.body do %>
-    <%= cable_ready_updates_for @project do %>
+    <%= cable_ready_updates_for @input_type do %>
       <%= render 'account/shared/box', divider: true do |box| %>
         <% box.title t('.header') %>
         <% box.description do %>
           <%= t('.description') %>
-          <%= t('.manage_description') if can? :manage, @project %>
+          <%= t('.manage_description') if can? :manage, @input_type %>
         <% end %>
 
         <% box.body do %>
-          <% with_attribute_settings object: @project, strategy: :label do %>
+          <% with_attribute_settings object: @input_type, strategy: :label do %>
             <%= render 'shared/attributes/text', attribute: :name %>
             <%= render 'shared/attributes/html', attribute: :description %>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
@@ -18,10 +18,10 @@
         <% end %>
 
         <% box.actions do %>
-          <%= link_to t('.buttons.edit'), [:edit, :account, @project], class: first_button_primary if can? :edit, @project %>
+          <%= link_to t('.buttons.edit'), [:edit, :account, @input_type], class: first_button_primary if can? :edit, @input_type %>
           <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
-          <%= button_to t('.buttons.destroy'), [:account, @project], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@project)) } if can? :destroy, @project %>
-          <%= link_to t('global.buttons.back'), [:account, @team, :projects], class: first_button_primary %>
+          <%= button_to t('.buttons.destroy'), [:account, @input_type], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@input_type)) } if can? :destroy, @input_type %>
+          <%= link_to t('global.buttons.back'), [:account, @project, :input_types], class: first_button_primary %>
         <% end %>
 
         <% box.raw_footer do %>
@@ -30,8 +30,6 @@
       <% end %>
     <% end %>
 
-    <%= render 'account/input_types/index', input_types: @project.input_types, hide_back: true %>
-    <%= render 'account/input_items/index', input_items: @project.input_items, hide_back: true %>
     <%# 🚅 super scaffolding will insert new children above this line. %>
   <% end %>
 <% end %>

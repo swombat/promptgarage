@@ -1,15 +1,14 @@
-class Project < ApplicationRecord
+class InputType < ApplicationRecord
   # 🚅 add concerns above.
 
   # 🚅 add attribute accessors above.
 
-  belongs_to :team
+  belongs_to :project
   # 🚅 add belongs_to associations above.
 
-  has_many :input_types, dependent: :destroy, enable_cable_ready_updates: true
-  has_many :input_items, dependent: :destroy, enable_cable_ready_updates: true
   # 🚅 add has_many associations above.
 
+  has_one :team, through: :project
   has_rich_text :description
   # 🚅 add has_one associations above.
 

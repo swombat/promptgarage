@@ -1,0 +1,109 @@
+en:
+  input_items: &input_items
+    label: &label Input Items
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Input Item
+      create: Create Input Item
+      edit: Edit Input Item
+      update: Update Input Item
+      destroy: Remove Input Item
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{input_item_name}? This will also remove any child resources and can't be undone.
+    input_item:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Input Item ID
+      project_id:
+        heading: Project ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      type_id: &type
+        _: &type_id Type
+        label: *type_id
+        heading: *type_id
+        api_title: *type_id
+        api_description: *type_id
+        placeholder: None
+      type: *type
+      contents:
+        _: &contents Contents
+        label: *contents
+        heading: *contents
+        api_title: *contents
+        api_description: *contents
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Input Items"
+      index: "List Input Items"
+      create: "Add a New Input Item"
+      member_actions: "Actions for an Individual Input Item"
+      show: "Retrieve a Input Item"
+      update: "Update a Input Item"
+      destroy: "Delete a Input Item"
+      fields: *fields
+    index:
+      section: "%{projects_possessive} Input Items"
+      contexts:
+        project:
+          header: Input Items
+          description: Below is a list of Input Items that have been added for %{project_name}.
+          description_empty: No Input Items have been added for %{project_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{input_item_name}"
+      header: Input Item Details
+      description: Below are the details we have for %{input_item_name}.
+      manage_description: You'll also find options for updating these details or removing %{input_item_name} from %{project_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Input Item for %{project_name}"
+      header: New Input Item Details
+      description: Please provide the details of the new Input Item you'd like to add to %{project_name}.
+      form: *form
+    edit:
+      section: "%{input_item_name}"
+      header: Edit Input Item Details
+      description: You can update the details or settings for %{input_item_name} below.
+      form: *form
+    notifications:
+      created: Input Item was successfully created.
+      updated: Input Item was successfully updated.
+      destroyed: Input Item was successfully destroyed.
+  account:
+    input_items: *input_items
+  activerecord:
+    attributes:
+      input_item:
+        name: *name
+        type_id: *type_id
+        contents: *contents
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

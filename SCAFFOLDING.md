@@ -18,7 +18,7 @@ rails generate super_scaffold InvitationKey Team key:text_field
 # Prompts are organised inside projects
 rails generate super_scaffold Project Team name:text_field description:trix_editor
 rails generate super_scaffold InputType Project,Team name:text_field description:trix_editor
-
+rails generate super_scaffold InputItem Project,Team name:text_field type_id:super_select{class_name=InputType} contents:text_area
 ```
 
 ## Planned Scaffolds

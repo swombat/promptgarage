@@ -1,0 +1,99 @@
+en:
+  input_types: &input_types
+    label: &label Input Types
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Input Type
+      create: Create Input Type
+      edit: Edit Input Type
+      update: Update Input Type
+      destroy: Remove Input Type
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{input_type_name}? This will also remove any child resources and can't be undone.
+    input_type:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Input Type ID
+      project_id:
+        heading: Project ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+        api_title: *description
+        api_description: *description
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Input Types"
+      index: "List Input Types"
+      create: "Add a New Input Type"
+      member_actions: "Actions for an Individual Input Type"
+      show: "Retrieve a Input Type"
+      update: "Update a Input Type"
+      destroy: "Delete a Input Type"
+      fields: *fields
+    index:
+      section: "%{projects_possessive} Input Types"
+      contexts:
+        project:
+          header: Input Types
+          description: Below is a list of Input Types that have been added for %{project_name}.
+          description_empty: No Input Types have been added for %{project_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{input_type_name}"
+      header: Input Type Details
+      description: Below are the details we have for %{input_type_name}.
+      manage_description: You'll also find options for updating these details or removing %{input_type_name} from %{project_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Input Type for %{project_name}"
+      header: New Input Type Details
+      description: Please provide the details of the new Input Type you'd like to add to %{project_name}.
+      form: *form
+    edit:
+      section: "%{input_type_name}"
+      header: Edit Input Type Details
+      description: You can update the details or settings for %{input_type_name} below.
+      form: *form
+    notifications:
+      created: Input Type was successfully created.
+      updated: Input Type was successfully updated.
+      destroyed: Input Type was successfully destroyed.
+  account:
+    input_types: *input_types
+  activerecord:
+    attributes:
+      input_type:
+        name: *name
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

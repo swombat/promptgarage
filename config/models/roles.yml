@@ -1,5 +1,7 @@
 default:
   models:
+    InputItem: read
+    InputType: read
     Project: read
     IntelligenceCredential: read
     InvitationKey: read
@@ -31,6 +33,8 @@ admin:
     - admin
     - editor
   models:
+    InputItem: manage
+    InputType: manage
     Project: manage
     IntelligenceCredential: manage
     InvitationKey: manage

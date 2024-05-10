@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_091220) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_091943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
+
+  create_table "input_items", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name"
+    t.bigint "type_id"
+    t.text "contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_input_items_on_project_id"
+    t.index ["type_id"], name: "index_input_items_on_type_id"
+  end
+
+  create_table "input_types", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_input_types_on_project_id"
   end
 
   create_table "integrations_stripe_installations", force: :cascade do |t|
@@ -370,6 +390,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091220) do
   add_foreign_key "account_onboarding_invitation_lists", "teams"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "input_items", "input_types", column: "type_id"
+  add_foreign_key "input_items", "projects"
+  add_foreign_key "input_types", "projects"
   add_foreign_key "integrations_stripe_installations", "oauth_stripe_accounts"
   add_foreign_key "integrations_stripe_installations", "teams"
   add_foreign_key "intelligence_credentials", "teams"

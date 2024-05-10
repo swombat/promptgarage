@@ -69,7 +69,10 @@ Rails.application.routes.draw do
 
         resources :invitation_keys
         resources :intelligence_credentials
-        resources :projects
+        resources :projects do
+          resources :input_types
+          resources :input_items
+        end
       end
     end
   end
