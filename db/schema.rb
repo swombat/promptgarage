@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_095240) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_121943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -230,6 +230,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_095240) do
     t.index ["team_id"], name: "index_projects_on_team_id"
   end
 
+  create_table "prompt_executions", force: :cascade do |t|
+    t.bigint "prompt_id", null: false
+    t.string "label"
+    t.text "compiled_parameters"
+    t.text "parameters_summary"
+    t.string "model"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prompt_id"], name: "index_prompt_executions_on_prompt_id"
+  end
+
   create_table "prompt_sections", force: :cascade do |t|
     t.bigint "prompt_id", null: false
     t.integer "sort_order"
@@ -431,6 +442,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_095240) do
   add_foreign_key "oauth_applications", "teams"
   add_foreign_key "oauth_stripe_accounts", "users"
   add_foreign_key "projects", "teams"
+  add_foreign_key "prompt_executions", "prompts"
   add_foreign_key "prompt_sections", "prompts"
   add_foreign_key "prompts", "projects"
   add_foreign_key "prompts", "prompts", column: "parent_id"

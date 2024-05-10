@@ -8,6 +8,7 @@ class Prompt < ApplicationRecord
   # 🚅 add belongs_to associations above.
 
   has_many :prompt_sections, dependent: :destroy, enable_cable_ready_updates: true
+  has_many :prompt_executions, dependent: :destroy, enable_cable_ready_updates: true
   # 🚅 add has_many associations above.
 
   has_one :team, through: :project

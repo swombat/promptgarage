@@ -30,6 +30,7 @@
     <% end %>
 
     <%= render 'account/prompt_sections/index', prompt_sections: @prompt.prompt_sections, hide_back: true %>
+    <%= render 'account/prompt_executions/index', prompt_executions: @prompt.prompt_executions, hide_back: true %>
     <%# 🚅 super scaffolding will insert new children above this line. %>
   <% end %>
 <% end %>

@@ -1,5 +1,6 @@
 default:
   models:
+    PromptExecution: read
     PromptSection: read
     Prompt: read
     InputItem: read
@@ -35,6 +36,7 @@ admin:
     - admin
     - editor
   models:
+    PromptExecution: manage
     PromptSection: manage
     Prompt: manage
     InputItem: manage

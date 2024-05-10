@@ -1,0 +1,118 @@
+en:
+  prompt_executions: &prompt_executions
+    label: &label Prompt Executions
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Prompt Execution
+      create: Create Prompt Execution
+      edit: Edit Prompt Execution
+      update: Update Prompt Execution
+      destroy: Remove Prompt Execution
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{prompt_execution_name}? This will also remove any child resources and can't be undone.
+    prompt_execution:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Prompt Execution ID
+      prompt_id:
+        heading: Prompt ID
+      label:
+        _: &label Label
+        label: *label
+        heading: *label
+        api_title: *label
+        api_description: *label
+      compiled_parameters:
+        _: &compiled_parameters Compiled Parameters
+        label: *compiled_parameters
+        heading: *compiled_parameters
+        api_title: *compiled_parameters
+        api_description: *compiled_parameters
+      parameters_summary:
+        _: &parameters_summary Parameters Summary
+        label: *parameters_summary
+        heading: *parameters_summary
+        api_title: *parameters_summary
+        api_description: *parameters_summary
+      model:
+        _: &model Model
+        label: *model
+        heading: *model
+        api_title: *model
+        api_description: *model
+        placeholder: None
+        options:
+          one: One
+          two: Two
+          three: Three
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Prompt Executions"
+      index: "List Prompt Executions"
+      create: "Add a New Prompt Execution"
+      member_actions: "Actions for an Individual Prompt Execution"
+      show: "Retrieve a Prompt Execution"
+      update: "Update a Prompt Execution"
+      destroy: "Delete a Prompt Execution"
+      fields: *fields
+    index:
+      section: "%{prompts_possessive} Prompt Executions"
+      contexts:
+        prompt:
+          header: Prompt Executions
+          description: Below is a list of Prompt Executions that have been added for %{prompt_name}.
+          description_empty: No Prompt Executions have been added for %{prompt_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{prompt_execution_name}"
+      header: Prompt Execution Details
+      description: Below are the details we have for %{prompt_execution_name}.
+      manage_description: You'll also find options for updating these details or removing %{prompt_execution_name} from %{prompt_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Prompt Execution for %{prompt_name}"
+      header: New Prompt Execution Details
+      description: Please provide the details of the new Prompt Execution you'd like to add to %{prompt_name}.
+      form: *form
+    edit:
+      section: "%{prompt_execution_name}"
+      header: Edit Prompt Execution Details
+      description: You can update the details or settings for %{prompt_execution_name} below.
+      form: *form
+    notifications:
+      created: Prompt Execution was successfully created.
+      updated: Prompt Execution was successfully updated.
+      destroyed: Prompt Execution was successfully destroyed.
+  account:
+    prompt_executions: *prompt_executions
+  activerecord:
+    attributes:
+      prompt_execution:
+        compiled_parameters: *compiled_parameters
+        parameters_summary: *parameters_summary
+        model: *model
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at
