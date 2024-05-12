@@ -13,19 +13,35 @@
         <%= render 'shared/fields/super_select', method: argument.underscore, choices: form_object.input_item_choices, html_options: {multiple: true}, other_options: {search: true} %>
       <% end %>
     <% end %>
-
     <div class="buttons">
-      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= form.submit t('.buttons.preview'), class: "button" %>
+      <% if form_object.preview? %>
+        <%= form.submit t('.buttons.execute'), class: "button" %>
+      <% end %>
       <%= link_to t('global.buttons.cancel'), [:account, @prompt], class: "button-secondary" %>
     </div>
 
     <div>
-      <div class="text-lg font-bold underline my-4">Full prompt:</div>
+      <% if form_object.preview? %>
+        <div class="text-lg font-bold underline my-4">Preview:</div>
+        <% if form_object.empty_args? %>
+          <div class="bg-amber-100 p-2 rounded-md border-amber-200 border-2">
+            Empty <span class="font-mono bg-red-100 p-0.5 rounded-md border-red-200 border-2">{{arguments}}</span> will be left blank in the submitted prompt.
+          </div>
+        <% end %>
+        <div class="bg-gray-100 p-2 rounded-md">
+          <code>
+            <%= tpl(form_object.preview_prompt_text, color: "red") %>
+          </code>
+        </div>
+      <% end %>
+
+      <div class="text-lg font-bold underline my-4">Template:</div>
       <div class="bg-gray-100 p-2 rounded-md">
         <code>
           <% form_object.prompt.prompt_sections.each do |section| %>
             <div title="<%= "#{section.name}: #{section.description.to_plain_text}" %>">
-              <%= section.contents %>
+              <%= tpl section.contents %>
             </div>
             <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
           <% end %>

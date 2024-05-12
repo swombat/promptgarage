@@ -7,7 +7,7 @@ en:
       label: *label
       icon: fal fa-puzzle-piece
     buttons: &buttons
-      new: Execute!...
+      new: New Prompt Execution
       create: Create Prompt Execution
       edit: Edit Prompt Execution
       update: Update Prompt Execution
@@ -107,7 +107,8 @@ en:
       destroyed: Prompt Execution was successfully destroyed.
     execution_form:
       buttons:
-        create: "Run Prompt!"
+        preview: "Preview Prompt"
+        execute: "Execute!"
   account:
     prompt_executions: *prompt_executions
   activerecord:

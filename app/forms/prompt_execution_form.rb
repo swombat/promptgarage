@@ -1,9 +1,9 @@
 class PromptExecutionForm
   include ActiveModel::Model
 
-  attr_accessor :prompt, :params, :label, :model
+  attr_accessor :prompt, :params, :label, :model, :preview
 
-  def initialize(prompt:, params:nil, label:nil, model:nil)
+  def initialize(prompt:, params: nil, label: nil, model: nil)
     self.prompt = prompt
     self.params = params
     self.label = label
@@ -37,10 +37,29 @@ class PromptExecutionForm
   end
 
   def form_input_item_ids
-    arguments.collect { |arg| self.send(arg.underscore.to_sym) }.flatten.compact.uniq
+    arguments.collect { |arg| send(arg.underscore.to_sym) }.flatten.compact.uniq
   end
 
   def all_objects
     InputItem.where(id: form_input_item_ids) + [prompt]
+  end
+
+  def preview?
+    @preview == true
+  end
+
+  def preview_prompt_text
+    prompt.compiled_prompt(argument_values, preview: true)
+  end
+
+  def argument_values
+    arguments.each_with_object({}) do |arg, hash|
+      value = send(arg.underscore.to_sym).compact.uniq.reject(&:blank?)
+      hash[arg.to_sym] = value.empty? ? nil : value
+    end
+  end
+
+  def empty_args?
+    argument_values.values.any?(&:blank?)
   end
 end

@@ -1,4 +1,6 @@
 class Account::PromptExecutionsController < Account::ApplicationController
+  include TemplateHelper
+
   account_load_and_authorize_resource :prompt_execution, through: :prompt, through_association: :prompt_executions
 
   # GET /account/prompts/:prompt_id/prompt_executions
@@ -33,7 +35,10 @@ class Account::PromptExecutionsController < Account::ApplicationController
       authorize! :edit, object
     end
 
-    # TODO : create prompt execution and execute it!
+    @form.preview = true if params[:commit] == "Preview Prompt"
+
+    Rails.logger.debug "===========2==== #{@form.inspect}"
+    render :new, status: 422
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions

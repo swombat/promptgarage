@@ -27,3 +27,12 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false

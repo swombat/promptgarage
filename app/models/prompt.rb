@@ -30,11 +30,29 @@ class Prompt < ApplicationRecord
   end
 
   def arguments
-    prompt_sections.collect(&:contents).collect { |contents| contents.scan(/{{(.*?)}}/).flatten }.flatten
+    prompt_sections.collect(&:arguments).flatten
   end
 
   def model_choices
     project.team.available_models
+  end
+
+  def compiled_prompt(args, preview: false)
+    result = []
+
+    prompt_sections.each do |section|
+      content = section.contents
+      section.arguments.each do |argument|
+        next unless args[argument.to_sym]
+
+        inputs = InputItem.where(id: args[argument.to_sym].collect(&:to_i))
+        inputs_as_string = inputs.collect { |input| input.as_string(preview: preview) }.join("\n\n")
+        content = content.gsub("{{#{argument}}}", inputs_as_string)
+      end
+      result << content
+    end
+
+    result.join("\n\n")
   end
   # 🚅 add methods above.
 end

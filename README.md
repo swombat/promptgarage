@@ -46,6 +46,14 @@ If you decide actually it's the prompt that needs changing, you "fork" it, and c
 
 Have a look at [the proposed scaffolding](SCAFFOLDING.md) for more details about the data model. Input welcome, find me on the [Ruby AI Builders Discord](https://discord.gg/jewqJN6wck) if you'd like to chat about this. 
 
+## Current Status
+
+This is not yet useable, but getting there. Here are some WIP screenshots:
+
+![prompt view](https://github.com/swombat/promptcraft/blob/main/docs/prompt_view.png?raw=true)
+![execution preview](https://github.com/swombat/promptcraft/blob/main/docs/execution_preview.png?raw=true)
+
+
 ## Information about Bullet Train
 If this is your first time working on a Bullet Train application, be sure to review the [Bullet Train Basic Techniques](https://bullettrain.co/docs/getting-started) and the [Bullet Train Developer Documentation](https://bullettrain.co/docs).
 

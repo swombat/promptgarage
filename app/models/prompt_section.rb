@@ -26,5 +26,9 @@ class PromptSection < ApplicationRecord
     prompt.prompt_sections
   end
 
+  def arguments
+    contents.scan(/{{(.*?)}}/).flatten
+  end
+
   # 🚅 add methods above.
 end

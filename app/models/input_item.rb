@@ -26,5 +26,12 @@ class InputItem < ApplicationRecord
     project.input_types
   end
 
+  def as_string(preview: false)
+    if preview
+      "[{[{#{name} (#{type.name})}]}]"
+    else
+      contents
+    end
+  end
   # 🚅 add methods above.
 end
