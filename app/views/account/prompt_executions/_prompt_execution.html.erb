@@ -12,9 +12,9 @@
     <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
     <td class="buttons">
       <% unless hide_actions %>
-        <% if can? :edit, prompt_execution %>
-          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt_execution], class: 'button-secondary button-smaller' %>
-        <% end %>
+        <%# if can? :edit, prompt_execution %>
+          <%#= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt_execution], class: 'button-secondary button-smaller' %>
+        <%# end %>
         <% if can? :destroy, prompt_execution %>
           <%= button_to t('.buttons.shorthand.destroy'), [:account, prompt_execution], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(prompt_execution)) }, class: 'button-secondary button-smaller' %>
         <% end %>

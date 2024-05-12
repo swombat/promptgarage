@@ -2,6 +2,7 @@
   <% page.title t('.section') %>
   <% page.body.render 'account/shared/box', divider: true do |box| %>
     <% box.t :description, title: '.header' %>
-    <% box.body.render 'form', prompt_execution: @prompt_execution %>
+    
+    <%# box.body.render 'form', prompt_execution: @prompt_execution %>
   <% end %>
 <% end %>

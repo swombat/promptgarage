@@ -12,15 +12,32 @@
         <% box.body do %>
           <% with_attribute_settings object: @prompt_execution, strategy: :label do %>
             <%= render 'shared/attributes/text', attribute: :label %>
-            <%= render 'shared/attributes/text', attribute: :compiled_parameters %>
-            <%= render 'shared/attributes/text', attribute: :parameters_summary %>
-            <%= render 'shared/attributes/option', attribute: :model %>
+            
+            <style>
+              <%= Rouge::Themes::Base16.mode(:light).render(scope: '.highlight') %>
+            </style>
+
+            <div class="space-y-0">
+              <label class="block text-2xs uppercase font-semibold dark:text-white my-0">
+                Compiled Parameters
+              </label>
+              <div class="dark:text-slate-400 bg-gray-100 p-2 my-0 rounded-md">
+                <pre class="whitespace-pre-wrap highlight"><code><%= pretty_print_json(@prompt_execution.compiled_parameters).html_safe %></code></pre>
+              </div>
+              <label class="block text-2xs uppercase font-semibold dark:text-white my-0">
+                Parameters Summary
+              </label>
+              <div class="dark:text-slate-400 bg-gray-100 p-2 my-0 rounded-md">
+                <pre class="whitespace-pre-wrap highlight"><code><%= pretty_print_json(@prompt_execution.parameters_summary_enriched).html_safe %></code></pre>
+              </div>
+            </div>
+            <%= render 'shared/attributes/text', attribute: :model %>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
           <% end %>
         <% end %>
 
         <% box.actions do %>
-          <%= link_to t('.buttons.edit'), [:edit, :account, @prompt_execution], class: first_button_primary if can? :edit, @prompt_execution %>
+          <%#= link_to t('.buttons.edit'), [:edit, :account, @prompt_execution], class: first_button_primary if can? :edit, @prompt_execution %>
           <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
           <%= button_to t('.buttons.destroy'), [:account, @prompt_execution], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@prompt_execution)) } if can? :destroy, @prompt_execution %>
           <%= link_to t('global.buttons.back'), [:account, @prompt, :prompt_executions], class: first_button_primary %>

@@ -26,9 +26,9 @@ class InputItem < ApplicationRecord
     project.input_types
   end
 
-  def as_string(preview: false)
+  def as_string(preview: false, expanded_tags: true)
     if preview
-      "[{[{#{name} (#{type.name})}]}]"
+      expanded_tags ? "[{[{#{name} (#{type.name})}]}]" : "{{#{name} (#{type.name})}}"
     else
       contents
     end

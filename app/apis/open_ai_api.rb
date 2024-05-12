@@ -2,15 +2,16 @@ require 'openai'
 
 class OpenAiApi < LlmApi
   def initialize(access_token:)
+    super()
     @access_token = access_token
     @client = OpenAI::Client.new(access_token: @access_token)
   end
 
   def models
-    @models ||= @client.models.list["data"].
-      select { |model| model["id"].starts_with?("gpt") }.
-      sort_by { |model| model["created"] }.reverse.
-      collect { |model| model["id"] }
+    @models ||= @client.models.list["data"]
+      .select { |model| model["id"].starts_with?("gpt") }
+      .sort_by { |model| model["created"] }.reverse
+      .collect { |model| model["id"] }
   end
 
   def get_response(params:, stream_proc:, stream_response_type:)

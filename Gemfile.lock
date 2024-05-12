@@ -299,6 +299,7 @@ GEM
       railties (~> 7.0)
       rotp (~> 6.0)
     docile (1.4.0)
+    domain_name (0.6.20240107)
     doorkeeper (5.7.0)
       railties (>= 5)
     drb (2.2.1)
@@ -328,6 +329,9 @@ GEM
       net-http
     fastimage (2.3.1)
     ffi (1.16.3)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
+      rake
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     foreman (0.88.1)
@@ -338,6 +342,15 @@ GEM
     hiredis (0.6.3)
     honeybadger (5.9.0)
     htmlentities (4.3.4)
+    http (5.2.0)
+      addressable (~> 2.8)
+      base64 (~> 0.1)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.5.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     http_accept_language (2.1.1)
     httparty (0.22.0)
       csv
@@ -379,6 +392,9 @@ GEM
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     lint_roller (1.1.0)
+    llhttp-ffi (0.5.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -568,6 +584,7 @@ GEM
       railties (>= 5.2)
     rexml (3.2.6)
     rotp (6.3.0)
+    rouge (4.2.1)
     rqrcode (2.2.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -745,6 +762,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2, != 6.4.2, != 6.4.1, != 6.4.0, != 6.3.0)
   foreman
   honeybadger
+  http
   jbuilder
   jsbundling-rails
   knapsack_pro
@@ -762,6 +780,7 @@ DEPENDENCIES
   rails_autoscale_agent
   rails_best_practices
   redis (~> 5.2.0)
+  rouge
   rqrcode
   ruby-openai
   ruby-vips

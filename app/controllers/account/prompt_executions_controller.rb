@@ -29,16 +29,26 @@ class Account::PromptExecutionsController < Account::ApplicationController
     @form = PromptExecutionForm.new(prompt: @prompt)
     @form.assign_attributes(params.require(:prompt_execution_form).permit([:label, :model] + @prompt.arguments.collect { |arg| {arg.underscore.to_sym => [] } } ))
 
-    Rails.logger.debug "=============== #{@form.inspect}"
-
     @form.all_objects.each do |object|
       authorize! :edit, object
     end
 
-    @form.preview = true if params[:commit] == "Preview Prompt"
+    # "prompt_execution_form"=>{"label"=>"", "model"=>"gpt-4-turbo-2024-04-09", "args"=>[""], "argument1"=>["", "1", "2"], "argument2"=>["", "2"], "hash"=>[""], "multiple"=>[""]},
 
-    Rails.logger.debug "===========2==== #{@form.inspect}"
-    render :new, status: 422
+    if params[:commit] == "Preview Prompt"
+      @form.preview = true
+
+      render :new, status: 422
+    else
+      @execution = @prompt.prompt_executions.new(
+        model: params[:prompt_execution_form][:model],
+        label: params[:prompt_execution_form][:label].blank? ? "#{@prompt.name}-#{Time.now.to_s}" : params[:prompt_execution_form][:label],
+      )
+      @execution.arguments = @form.argument_values
+
+      @execution.execute
+      redirect_to [:account, @prompt]
+    end
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions

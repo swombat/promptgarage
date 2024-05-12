@@ -213,5 +213,7 @@ gem "pry"
 # that you run into a merge conflict in the future.
 gem 'ruby-openai'
 gem 'anthropic'
+gem 'http'
+gem 'rouge'
 
 # 🚅 super scaffolding will insert new oauth providers above this line.
