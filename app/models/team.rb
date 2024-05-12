@@ -22,5 +22,8 @@ class Team < ApplicationRecord
 
   # 🚅 add delegations above.
 
+  def available_models
+    intelligence_credentials.collect { |credential| credential.models }.flatten
+  end
   # 🚅 add methods above.
 end

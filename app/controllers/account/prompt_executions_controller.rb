@@ -15,10 +15,25 @@ class Account::PromptExecutionsController < Account::ApplicationController
 
   # GET /account/prompts/:prompt_id/prompt_executions/new
   def new
+    @form = PromptExecutionForm.new(prompt: @prompt)
   end
 
   # GET /account/prompt_executions/:id/edit
   def edit
+  end
+
+  def execute
+    @prompt = Prompt.find(params[:prompt_id])
+    @form = PromptExecutionForm.new(prompt: @prompt)
+    @form.assign_attributes(params.require(:prompt_execution_form).permit([:label, :model] + @prompt.arguments.collect { |arg| {arg.underscore.to_sym => [] } } ))
+
+    Rails.logger.debug "=============== #{@form.inspect}"
+
+    @form.all_objects.each do |object|
+      authorize! :edit, object
+    end
+
+    # TODO : create prompt execution and execute it!
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions

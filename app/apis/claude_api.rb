@@ -1,5 +1,9 @@
+require 'anthropic'
+
 class ClaudeApi < LlmApi
-  def initialize
+  def initialize(access_token:)
+    @api_key = access_token
+    @client = Anthropic::Client.new(access_token: @access_token)
   end
 
   def models

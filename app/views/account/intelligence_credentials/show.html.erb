@@ -12,7 +12,7 @@
         <% box.body do %>
           <% with_attribute_settings object: @intelligence_credential, strategy: :label do %>
             <%= render 'shared/attributes/text', attribute: :api_key %>
-            <%= render 'shared/attributes/option', attribute: :class_name %>
+            <%= render 'shared/attributes/text', attribute: :class_name %>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
           <% end %>
         <% end %>

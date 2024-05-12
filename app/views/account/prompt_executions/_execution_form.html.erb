@@ -1,0 +1,36 @@
+<%
+  form_object ||= @form
+%>
+
+<%= form_with model: form_object, url: [:account, @prompt, :execute], local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: [:account, @prompt] do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/text_field', method: :label, options: {autofocus: true} %>
+      <%= render 'shared/fields/super_select', method: :model, choices: form_object.model_choices, other_options: {search: true} %>
+      <% form_object.arguments.each do |argument| %>
+        <%= render 'shared/fields/super_select', method: argument.underscore, choices: form_object.input_item_choices, html_options: {multiple: true}, other_options: {search: true} %>
+      <% end %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), [:account, @prompt], class: "button-secondary" %>
+    </div>
+
+    <div>
+      <div class="text-lg font-bold underline my-4">Full prompt:</div>
+      <div class="bg-gray-100 p-2 rounded-md">
+        <code>
+          <% form_object.prompt.prompt_sections.each do |section| %>
+            <div title="<%= "#{section.name}: #{section.description.to_plain_text}" %>">
+              <%= section.contents %>
+            </div>
+            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
+          <% end %>
+        </code>
+      </div>
+    </div>
+  <% end %>
+<% end %>

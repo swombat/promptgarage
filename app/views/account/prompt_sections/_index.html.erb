@@ -40,7 +40,7 @@
         <% unless hide_actions %>
           <% if context == prompt %>
             <% if can? :create, PromptSection.new(prompt: prompt) %>
-              <%= link_to "t('.buttons.new')", [:new, :account, prompt, :prompt_section], class: "#{first_button_primary(:prompt_section)} new" %>
+              <%= link_to t('.buttons.new'), [:new, :account, prompt, :prompt_section], class: "#{first_button_primary(:prompt_section)} new" %>
             <% end %>
           <% end %>
 

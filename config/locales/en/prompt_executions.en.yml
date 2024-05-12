@@ -105,6 +105,9 @@ en:
       created: Prompt Execution was successfully created.
       updated: Prompt Execution was successfully updated.
       destroyed: Prompt Execution was successfully destroyed.
+    execution_form:
+      buttons:
+        create: "Run Prompt!"
   account:
     prompt_executions: *prompt_executions
   activerecord:

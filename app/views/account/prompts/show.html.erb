@@ -15,6 +15,14 @@
                 <%= render 'shared/attributes/text', attribute: :name %>
                 <%= render 'shared/attributes/html', attribute: :description %>
                 <%# 🚅 super scaffolding will insert new fields above this line. %>
+                <div class="space-y-0">
+                  <span class="block text-2xs uppercase font-semibold py-2 dark:text-white">Arguments:</span>
+                  <ul class="list-disc mx-6">
+                    <% @prompt.arguments.each do |argument| %>
+                      <li><%= argument %></li>
+                    <% end %>
+                  </ul>
+                </div>
               <% end %>
             <% end %>
 

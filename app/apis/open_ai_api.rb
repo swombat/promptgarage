@@ -1,9 +1,9 @@
 require 'openai'
 
 class OpenAiApi < LlmApi
-  def initialize(access_key:)
-    @access_key = access_key
-    @client = OpenAI::Client.new(access_token: @access_key)
+  def initialize(access_token:)
+    @access_token = access_token
+    @client = OpenAI::Client.new(access_token: @access_token)
   end
 
   def models

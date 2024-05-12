@@ -21,3 +21,9 @@ Metrics/AbcSize:
 # Alternatively, disable the ABC size cop entirely
 # Metrics/AbcSize:
 #   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

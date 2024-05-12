@@ -29,5 +29,12 @@ class Prompt < ApplicationRecord
     [parent]
   end
 
+  def arguments
+    prompt_sections.collect(&:contents).collect { |contents| contents.scan(/{{(.*?)}}/).flatten }.flatten
+  end
+
+  def model_choices
+    project.team.available_models
+  end
   # 🚅 add methods above.
 end
