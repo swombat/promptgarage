@@ -23,7 +23,7 @@
               <%= link_to t('.buttons.edit'), [:edit, :account, @project], class: first_button_primary if can? :edit, @project %>
               <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
               <%= button_to t('.buttons.destroy'), [:account, @project], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@project)) } if can? :destroy, @project %>
-              <%= link_to t('global.buttons.back'), [:account, @team, :projects], class: first_button_primary %>
+              <%= link_to t('global.buttons.back'), [:account, @team], class: first_button_primary %>
             <% end %>
 
             <% box.raw_footer do %>

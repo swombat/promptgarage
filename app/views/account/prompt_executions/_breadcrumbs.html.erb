@@ -1,7 +1,7 @@
 <% prompt_execution ||= @prompt_execution %>
 <% prompt ||= @prompt || prompt_execution&.prompt %>
 <%= render 'account/prompts/breadcrumbs', prompt: prompt %>
-<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, prompt, :prompt_executions] %>
+<%#= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, prompt, :prompt_executions] %>
 <% if prompt_execution&.persisted? %>
   <%= render 'account/shared/breadcrumb', label: prompt_execution.label_string, url: [:account, prompt_execution] %>
 <% end %>

@@ -1,7 +1,7 @@
 <% input_type ||= @input_type %>
 <% project ||= @project || input_type&.project %>
 <%= render 'account/projects/breadcrumbs', project: project %>
-<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, project, :input_types] %>
+<%#= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, project, :input_types] %>
 <% if input_type&.persisted? %>
   <%= render 'account/shared/breadcrumb', label: input_type.label_string, url: [:account, input_type] %>
 <% end %>

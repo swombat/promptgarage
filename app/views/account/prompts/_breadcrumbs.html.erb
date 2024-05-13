@@ -1,7 +1,7 @@
 <% prompt ||= @prompt %>
 <% project ||= @project || prompt&.project %>
 <%= render 'account/projects/breadcrumbs', project: project %>
-<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, project, :prompts] %>
+<%#= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, project, :prompts] %>
 <% if prompt&.persisted? %>
   <%= render 'account/shared/breadcrumb', label: prompt.label_string, url: [:account, prompt] %>
 <% end %>
