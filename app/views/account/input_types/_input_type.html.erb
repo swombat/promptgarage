@@ -15,7 +15,7 @@
         <% if can? :edit, input_type %>
           <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, input_type], class: 'button-secondary button-smaller' %>
         <% end %>
-        <% if can? :destroy, input_type %>
+        <% if can?(:destroy, input_type) && input_type.not_in_use? %>
           <%= button_to t('.buttons.shorthand.destroy'), [:account, input_type], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(input_type)) }, class: 'button-secondary button-smaller' %>
         <% end %>
         <%# 🚅 super scaffolding will insert new action model buttons above this line. %>

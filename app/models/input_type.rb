@@ -21,5 +21,8 @@ class InputType < ApplicationRecord
 
   # 🚅 add delegations above.
 
+  def not_in_use?
+    InputItem.where(type: self).count.zero?
+  end
   # 🚅 add methods above.
 end

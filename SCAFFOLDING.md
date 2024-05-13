@@ -27,6 +27,11 @@ rails generate super_scaffold PromptSection Prompt,Project,Team name:text_field 
 rails generate super_scaffold PromptExecution Prompt,Project,Team label:text_field compiled_parameters:text_area parameters_summary:text_area model:super_select
 rails generate super_scaffold Output PromptExecution,Prompt,Project,Team label:text_field results:text_area input_tokens:number_field output_tokens:number_field message_id_api:text_field user_rating:number_field
 
+# Link Inputs and PromptExecutions with a many-to-many
+rails generate super_scaffold:join_model InputItem::PromptExecution prompt_execution_id{class_name=PromptExecution} input_item_id{class_name=InputItem}
+
+rails generate super_scaffold:field PromptExecution inputs
+
 ```
 
 ## Planned Scaffolds
