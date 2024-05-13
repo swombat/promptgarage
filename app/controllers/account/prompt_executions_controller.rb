@@ -44,15 +44,15 @@ class Account::PromptExecutionsController < Account::ApplicationController
       )
       @execution.arguments = @form.argument_values
 
-      @execution.execute
-      redirect_to [:account, @prompt]
+      output = @execution.execute
+      redirect_to [:account, output]
     end
   end
 
   def execute_again
     @execution = PromptExecution.find(params[:prompt_execution_id])
-    @execution.execute
-    redirect_to [:account, @execution.prompt]
+    output = @execution.execute
+    redirect_to [:account, output]
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions

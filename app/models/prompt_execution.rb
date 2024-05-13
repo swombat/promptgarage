@@ -40,14 +40,25 @@ class PromptExecution < ApplicationRecord
   end
 
   def execute
-    api = team.api_for(model)
     output = outputs.create(label: "#{self.label}-#{Time.now.to_i}")
+    AsyncAiProcessJob.perform_later(id, output.id)
+    return output
+  end
+
+  def execute_async(output)
+    api = team.api_for(model)
     response = api.get_response(
       params: JSON.parse(compiled_parameters),
       stream_proc: Proc.new { |incremental_response| puts incremental_response; output.update_attribute(:results, incremental_response) },
       stream_response_type: :text
     )
-    response
+
+    output.message_id_api = response["id"]
+    output.output_tokens = response["usage"]["output_tokens"]
+    output.input_tokens = response["usage"]["input_tokens"]
+    output.save
+
+    Rails.logger.debug(response.inspect)
   end
   # 🚅 add methods above.
 end
