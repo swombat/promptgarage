@@ -39,6 +39,17 @@ class PromptExecution < ApplicationRecord
     json_summary.to_json
   end
 
+  def inputs_used
+    json_summary = JSON.parse(parameters_summary)
+    inputs = []
+    json_summary.each_key do |key|
+      next if json_summary[key].blank?
+      puts json_summary[key]
+      inputs << InputItem.where(id: json_summary[key].collect(&:to_i))
+    end
+    inputs
+  end
+
   def execute
     output = outputs.create(label: "#{self.label}-#{Time.now.to_i}")
     AsyncAiProcessJob.perform_later(id, output.id)
