@@ -29,7 +29,6 @@ rails generate super_scaffold Output PromptExecution,Prompt,Project,Team label:t
 
 # Link Inputs and PromptExecutions with a many-to-many
 rails generate super_scaffold:join_model InputItem::PromptExecution prompt_execution_id{class_name=PromptExecution} input_item_id{class_name=InputItem}
-
 rails generate super_scaffold:field PromptExecution inputs
 
 ```
