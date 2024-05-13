@@ -15,35 +15,44 @@ class OpenAiApi < LlmApi
   end
 
   def get_response(params:, stream_proc:, stream_response_type:)
-    # Just a stub for now to build the rest
-    return {
-      "id": "chatcmpl-8P7s1c2QVZW1Uqqd11S0cB78LBvoA",
-      "object": "chat.completion",
-      "created": 1700999145,
-      "model": "gpt-3.5-turbo-0613",
-      "choices": [
-        {
-          "index": 0,
-          "message": {
-            "role": "assistant",
-            "content": "Hi there! How can I assist you today?"
-          },
-          "finish_reason": "stop"
-        }
-      ],
-      "usage": {
-        "prompt_tokens": 9,
-        "completion_tokens": 10,
-        "total_tokens": 19
-      }
+    params = params.transform_keys(&:to_sym)
+    incremental_response = ""
+    raise "Unsupported stream response type #{stream_response_type}" unless [:text].include?(stream_response_type)
+    response = {
+      usage: {
+        input_tokens: OpenAI.rough_token_count(params[:prompt]),
+        output_tokens: 0,
+      },
+      id: nil
     }
-    # if stream_proc
-    #   @client.chat.completions.create(params.merge(stream: true)) do |response|
-    #     stream_proc.call(response, stream_response_type)
-    #   end
-    # else
-    #   @client.chat.completions.create(params)
-    # end
+
+    parameters = {
+      model: params[:model],
+      messages: [{ role: "user", content: params[:prompt]}],
+      temperature: params[:temperature] || 0.7,
+      stream: proc do |chunk, _bytesize|
+        response[:id] = chunk["id"] if response[:id].nil? && chunk["id"].present?
+        if stream_response_type == :text
+          delta = chunk.dig("choices", 0, "delta", "content")
+          next if delta.nil?
+          puts response.inspect
+          response[:usage][:output_tokens] += 1
+          incremental_response += delta
+          stream_proc.call(incremental_response, delta)
+        end
+      end
+    }
+
+    @client.chat(parameters: parameters)
+
+    # Fake it for now
+    response[:choices] = [ { index: 0, message: {
+                                            role: "assistant",
+                                            content: incremental_response
+                                          },
+                              finish_reason: "stop"} ]
+
+    JSON.parse(response.to_json)
   end
 end
 

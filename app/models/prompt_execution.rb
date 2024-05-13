@@ -60,7 +60,7 @@ class PromptExecution < ApplicationRecord
     api = team.api_for(model)
     response = api.get_response(
       params: JSON.parse(compiled_parameters),
-      stream_proc: Proc.new { |incremental_response| puts incremental_response; output.update_attribute(:results, incremental_response) },
+      stream_proc: Proc.new { |incremental_response| output.update_attribute(:results, incremental_response) },
       stream_response_type: :text
     )
 

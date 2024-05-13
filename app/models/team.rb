@@ -28,7 +28,6 @@ class Team < ApplicationRecord
 
   def api_for(model)
     credential = intelligence_credentials.select { |credential| credential.models.include?(model) }.first
-    puts credential.api_key
     credential.class_name.constantize.new(access_token: credential.api_key)
   end
   # 🚅 add methods above.
