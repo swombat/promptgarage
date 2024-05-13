@@ -212,7 +212,7 @@ gem "pry"
 # You can add any Ruby gems you need below. By keeping them separate from our gems above, you'll avoid the likelihood
 # that you run into a merge conflict in the future.
 gem 'ruby-openai'
-gem 'anthropic'
+gem 'anthropic', git: "https://github.com/swombat/anthropic"
 gem 'http'
 gem 'rouge'
 

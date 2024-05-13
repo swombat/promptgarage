@@ -25,5 +25,11 @@ class Team < ApplicationRecord
   def available_models
     intelligence_credentials.collect { |credential| credential.models }.flatten
   end
+
+  def api_for(model)
+    credential = intelligence_credentials.select { |credential| credential.models.include?(model) }.first
+    puts credential.api_key
+    credential.class_name.constantize.new(access_token: credential.api_key)
+  end
   # 🚅 add methods above.
 end

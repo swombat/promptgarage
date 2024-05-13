@@ -9,7 +9,7 @@
     <%= render "shared/tables/checkbox", object: prompt_section %>
     <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, prompt_section] %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
-    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td><%= number_with_delimiter OpenAI.rough_token_count prompt_section.contents %></td>
     <td class="buttons">
       <% unless hide_actions %>
         <% if can? :edit, prompt_section %>

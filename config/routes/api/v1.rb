@@ -38,7 +38,9 @@ shallow do
         resources :input_items
         resources :prompts do
           resources :prompt_sections, concerns: [:sortable]
-          resources :prompt_executions
+          resources :prompt_executions do
+            resources :outputs
+          end
         end
       end
     end

@@ -1,5 +1,6 @@
 default:
   models:
+    Output: read
     PromptExecution: read
     PromptSection: read
     Prompt: read
@@ -36,6 +37,7 @@ admin:
     - admin
     - editor
   models:
+    Output: manage
     PromptExecution: manage
     PromptSection: manage
     Prompt: manage

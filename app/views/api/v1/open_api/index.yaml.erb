@@ -30,6 +30,7 @@ components:
     <%= automatic_components_for Prompt %>
     <%= automatic_components_for PromptSection %>
     <%= automatic_components_for PromptExecution %>
+    <%= automatic_components_for Output %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -72,4 +73,5 @@ paths:
   <%= automatic_paths_for Prompt, Project %>
   <%= automatic_paths_for PromptSection, Prompt %>
   <%= automatic_paths_for PromptExecution, Prompt %>
+  <%= automatic_paths_for Output, PromptExecution %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>

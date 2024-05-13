@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_121943) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_062115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -219,6 +219,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_121943) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["uid"], name: "index_oauth_stripe_accounts_on_uid", unique: true
     t.index ["user_id"], name: "index_oauth_stripe_accounts_on_user_id"
+  end
+
+  create_table "outputs", force: :cascade do |t|
+    t.bigint "prompt_execution_id", null: false
+    t.string "label"
+    t.text "results"
+    t.integer "input_tokens"
+    t.integer "output_tokens"
+    t.string "message_id_api"
+    t.integer "user_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prompt_execution_id"], name: "index_outputs_on_prompt_execution_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -441,6 +454,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_121943) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_applications", "teams"
   add_foreign_key "oauth_stripe_accounts", "users"
+  add_foreign_key "outputs", "prompt_executions"
   add_foreign_key "projects", "teams"
   add_foreign_key "prompt_executions", "prompts"
   add_foreign_key "prompt_sections", "prompts"

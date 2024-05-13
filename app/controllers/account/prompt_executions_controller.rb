@@ -33,8 +33,6 @@ class Account::PromptExecutionsController < Account::ApplicationController
       authorize! :edit, object
     end
 
-    # "prompt_execution_form"=>{"label"=>"", "model"=>"gpt-4-turbo-2024-04-09", "args"=>[""], "argument1"=>["", "1", "2"], "argument2"=>["", "2"], "hash"=>[""], "multiple"=>[""]},
-
     if params[:commit] == "Preview Prompt"
       @form.preview = true
 
@@ -49,6 +47,12 @@ class Account::PromptExecutionsController < Account::ApplicationController
       @execution.execute
       redirect_to [:account, @prompt]
     end
+  end
+
+  def execute_again
+    @execution = PromptExecution.find(params[:prompt_execution_id])
+    @execution.execute
+    redirect_to [:account, @execution.prompt]
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions

@@ -6,6 +6,7 @@ class PromptExecution < ApplicationRecord
   belongs_to :prompt
   # 🚅 add belongs_to associations above.
 
+  has_many :outputs, dependent: :destroy, enable_cable_ready_updates: true
   # 🚅 add has_many associations above.
 
   has_one :team, through: :prompt
@@ -39,7 +40,14 @@ class PromptExecution < ApplicationRecord
   end
 
   def execute
-
+    api = team.api_for(model)
+    output = outputs.create(label: "#{self.label}-#{Time.now.to_i}")
+    response = api.get_response(
+      params: JSON.parse(compiled_parameters),
+      stream_proc: Proc.new { |incremental_response| puts incremental_response; output.update_attribute(:results, incremental_response) },
+      stream_response_type: :text
+    )
+    response
   end
   # 🚅 add methods above.
 end

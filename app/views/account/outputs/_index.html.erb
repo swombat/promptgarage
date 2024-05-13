@@ -1,37 +1,36 @@
-<% prompt_executions = prompt_executions.accessible_by(current_ability) %>
-<% prompt = @prompt %>
-<% context ||= prompt %>
-<% collection ||= :prompt_executions %>
+<% outputs = outputs.accessible_by(current_ability) %>
+<% prompt_execution = @prompt_execution %>
+<% context ||= prompt_execution %>
+<% collection ||= :outputs %>
 <% hide_actions ||= false %>
 <% hide_back ||= false %>
 
 <% pagy ||= nil %>
-<% pagy, prompt_executions = pagy(prompt_executions, page_param: :prompt_executions_page) unless pagy %>
+<% pagy, outputs = pagy(outputs, page_param: :outputs_page) unless pagy %>
 
 <%= action_model_select_controller do %>
   <% cable_ready_updates_for context, collection do %>
     <%= render 'account/shared/box', pagy: pagy do |box| %>
       <% box.title t(".contexts.#{context.class.name.underscore}.header") %>
       <% box.description do %>
-        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless prompt_executions.any?}") %>
-        <%= render "shared/limits/index", model: prompt_executions.model %>
+        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless outputs.any?}") %>
+        <%= render "shared/limits/index", model: outputs.model %>
       <% end %>
 
       <% box.table do %>
-        <% if prompt_executions.any? %>
+        <% if outputs.any? %>
           <table class="table">
             <thead>
               <tr>
                 <%= render "shared/tables/select_all" %>
                 <th><%= t('.fields.label.heading') %></th>
                 <%# 🚅 super scaffolding will insert new field headers above this line. %>
-                <th>Model</th>
-                <th>Outputs</th>
+                <th><%= t('.fields.created_at.heading') %></th>
                 <th class="text-right"></th>
               </tr>
             </thead>
             <tbody>
-              <%= render partial: 'account/prompt_executions/prompt_execution', collection: prompt_executions %>
+              <%= render partial: 'account/outputs/output', collection: outputs %>
             </tbody>
           </table>
         <% end %>
@@ -39,18 +38,18 @@
 
       <% box.actions do %>
         <% unless hide_actions %>
-          <% if context == prompt %>
-            <% if can? :create, PromptExecution.new(prompt: prompt) %>
-              <%= link_to t('.buttons.new'), [:new, :account, prompt, :prompt_execution], class: "#{first_button_primary(:prompt_execution)} new" %>
+          <% if context == prompt_execution %>
+            <% if can? :create, Output.new(prompt_execution: prompt_execution) %>
+              <%= link_to t('.buttons.execute_again'), [:account, prompt_execution, :execute_again], class: "#{first_button_primary(:output)} new", method: :post %>
             <% end %>
           <% end %>
 
           <%# 🚅 super scaffolding will insert new targets one parent action model buttons above this line. %>
           <%# 🚅 super scaffolding will insert new bulk action model buttons above this line. %>
-          <%= render "shared/bulk_action_select" if prompt_executions.any? %>
+          <%= render "shared/bulk_action_select" if outputs.any? %>
 
           <% unless hide_back %>
-            <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:prompt_execution)} back" %>
+            <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:output)} back" %>
           <% end %>
         <% end %>
       <% end %>

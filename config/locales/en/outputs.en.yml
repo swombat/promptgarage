@@ -1,0 +1,128 @@
+en:
+  outputs: &outputs
+    label: &label Outputs
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Output
+      execute_again: Execute Again
+      create: Create Output
+      edit: Edit Output
+      update: Update Output
+      destroy: Remove Output
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{output_name}? This will also remove any child resources and can't be undone.
+    output:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Output ID
+      prompt_execution_id:
+        heading: Prompt Execution ID
+      label:
+        _: &label Label
+        label: *label
+        heading: *label
+        api_title: *label
+        api_description: *label
+      results:
+        _: &results Results
+        label: *results
+        heading: *results
+        api_title: *results
+        api_description: *results
+      input_tokens:
+        _: &input_tokens Input Tokens
+        label: *input_tokens
+        heading: *input_tokens
+        api_title: *input_tokens
+        api_description: *input_tokens
+      output_tokens:
+        _: &output_tokens Output Tokens
+        label: *output_tokens
+        heading: *output_tokens
+        api_title: *output_tokens
+        api_description: *output_tokens
+      message_id_api:
+        _: &message_id_api Message Id Api
+        label: *message_id_api
+        heading: *message_id_api
+        api_title: *message_id_api
+        api_description: *message_id_api
+      user_rating:
+        _: &user_rating User Rating
+        label: *user_rating
+        heading: *user_rating
+        api_title: *user_rating
+        api_description: *user_rating
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Outputs"
+      index: "List Outputs"
+      create: "Add a New Output"
+      member_actions: "Actions for an Individual Output"
+      show: "Retrieve a Output"
+      update: "Update a Output"
+      destroy: "Delete a Output"
+      fields: *fields
+    index:
+      section: "%{prompt_executions_possessive} Outputs"
+      contexts:
+        prompt_execution:
+          header: Outputs
+          description: Below is a list of Outputs that have been added for %{prompt_execution_name}.
+          description_empty: No Outputs have been added for %{prompt_execution_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{output_name}"
+      header: Output Details
+      description: Below are the details we have for %{output_name}.
+      manage_description: You'll also find options for updating these details or removing %{output_name} from %{prompt_execution_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Output for %{prompt_execution_name}"
+      header: New Output Details
+      description: Please provide the details of the new Output you'd like to add to %{prompt_execution_name}.
+      form: *form
+    edit:
+      section: "%{output_name}"
+      header: Edit Output Details
+      description: You can update the details or settings for %{output_name} below.
+      form: *form
+    notifications:
+      created: Output was successfully created.
+      updated: Output was successfully updated.
+      destroyed: Output was successfully destroyed.
+  account:
+    outputs: *outputs
+  activerecord:
+    attributes:
+      output:
+        results: *results
+        input_tokens: *input_tokens
+        output_tokens: *output_tokens
+        message_id_api: *message_id_api
+        user_rating: *user_rating
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

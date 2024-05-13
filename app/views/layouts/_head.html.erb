@@ -28,4 +28,16 @@
 
 <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
 
+<style>
+  <%= Rouge::Themes::Base16::Solarized.mode(:light).render(scope: '.highlight') %>
+
+  @media (prefers-color-scheme: dark) {
+    <%= Rouge::Themes::Gruvbox.mode(:dark).render(scope: '.highlight') %>
+  }
+
+  .highlight {
+    background-color: transparent !important; /* Override background color */
+  }
+</style>
+
 <% # put your application-specific additions below to avoid merge conflicts later. %>

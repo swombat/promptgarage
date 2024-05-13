@@ -1,0 +1,8 @@
+<% output ||= @output %>
+<% prompt_execution ||= @prompt_execution || output&.prompt_execution %>
+<%= render 'account/prompt_executions/breadcrumbs', prompt_execution: prompt_execution %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, prompt_execution, :outputs] %>
+<% if output&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: output.label_string, url: [:account, output] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'outputs' %>

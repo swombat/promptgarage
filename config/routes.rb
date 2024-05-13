@@ -75,7 +75,10 @@ Rails.application.routes.draw do
           resources :prompts do
             resources :prompt_sections, concerns: [:sortable]
             post :execute, to: "prompt_executions#execute"
-            resources :prompt_executions
+            resources :prompt_executions do
+              post :execute_again, to: "prompt_executions#execute_again"
+              resources :outputs
+            end
           end
         end
       end
