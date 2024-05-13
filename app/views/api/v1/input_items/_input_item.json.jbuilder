@@ -4,6 +4,7 @@ json.extract! input_item,
   :name,
   :type_id,
   :contents,
+  :used,
   # 🚅 super scaffolding will insert new fields above this line.
   :created_at,
   :updated_at

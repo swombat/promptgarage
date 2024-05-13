@@ -47,7 +47,7 @@ class PromptExecution < ApplicationRecord
       puts json_summary[key]
       inputs << InputItem.where(id: json_summary[key].collect(&:to_i))
     end
-    inputs
+    inputs.flatten
   end
 
   def execute
@@ -68,6 +68,8 @@ class PromptExecution < ApplicationRecord
     output.output_tokens = response["usage"]["output_tokens"]
     output.input_tokens = response["usage"]["input_tokens"]
     output.save
+
+    inputs_used.each { |input| input.update_attribute(:used, true) }
 
     Rails.logger.debug(response.inspect)
   end

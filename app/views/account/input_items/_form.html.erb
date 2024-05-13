@@ -9,6 +9,7 @@
       <%= render 'shared/fields/super_select', method: :type_id, options: {}, html_options: {},
         choices: @input_item.valid_types.map { |input_type| [input_type.label_string, input_type.id] } %>
       <%= render 'shared/fields/text_area', method: :contents %>
+      <%= render 'shared/fields/options', method: :used %>
       <%# 🚅 super scaffolding will insert new fields above this line. %>
     <% end %>
 

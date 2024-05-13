@@ -45,6 +45,15 @@ en:
         heading: *contents
         api_title: *contents
         api_description: *contents
+      used:
+        _: &used Used
+        label: *used
+        heading: *used
+        api_title: *used
+        api_description: *used
+        options:
+          yes: "Yes"
+          no: "No"
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
         _: &created_at Added
@@ -104,6 +113,7 @@ en:
         name: *name
         type_id: *type_id
         contents: *contents
+        used: *used
         # 🚅 super scaffolding will insert new activerecord attributes above this line.
         created_at: *created_at
         updated_at: *updated_at

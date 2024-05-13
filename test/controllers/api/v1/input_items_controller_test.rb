@@ -35,6 +35,7 @@ def assert_proper_object_serialization(input_item_data)
   assert_equal_or_nil input_item_data['name'], input_item.name
   assert_equal_or_nil input_item_data['type_id'], input_item.type_id
   assert_equal_or_nil input_item_data['contents'], input_item.contents
+  assert_equal_or_nil input_item_data['used'], input_item.used
   # 🚅 super scaffolding will insert new fields above this line.
 
   assert_equal input_item_data["project_id"], input_item.project_id

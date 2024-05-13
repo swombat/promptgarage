@@ -28,7 +28,7 @@ rails generate super_scaffold PromptExecution Prompt,Project,Team label:text_fie
 rails generate super_scaffold Output PromptExecution,Prompt,Project,Team label:text_field results:text_area input_tokens:number_field output_tokens:number_field message_id_api:text_field user_rating:number_field
 
 # Temporary hack until https://github.com/bullet-train-co/bullet_train/issues/1457 is fixed
-rails generate super_scaffold:field InputItem frozen:boolean
+rails generate super_scaffold:field InputItem used:boolean
 ```
 
 ## Planned Scaffolds
