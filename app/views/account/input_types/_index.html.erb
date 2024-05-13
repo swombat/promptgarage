@@ -25,12 +25,10 @@
                 <%= render "shared/tables/select_all" %>
                 <th><%= t('.fields.name.heading') %></th>
                 <%# 🚅 super scaffolding will insert new field headers above this line. %>
-                <th><%= t('.fields.created_at.heading') %></th>
-                <th class="text-right"></th>
               </tr>
             </thead>
             <tbody>
-              <%= render partial: 'account/input_types/input_type', collection: input_types %>
+              <%= render partial: 'account/input_types/input_type', collection: input_types, locals: { hide_actions: true } %>
             </tbody>
           </table>
         <% end %>

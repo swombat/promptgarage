@@ -2,9 +2,9 @@
   <% p.content_for :title, t('.header', teams_possessive: possessive_string(@team.name)) %>
 
   <% p.content_for :body do %>
-    <%= render 'account/invitation_keys/index', invitation_keys: @team.invitation_keys, hide_back: true %>
-    <%= render 'account/intelligence_credentials/index', intelligence_credentials: @team.intelligence_credentials, hide_back: true %>
     <%= render 'account/projects/index', projects: @team.projects, hide_back: true %>
+    <%= render 'account/intelligence_credentials/index', intelligence_credentials: @team.intelligence_credentials, hide_back: true %>
+    <%= render 'account/invitation_keys/index', invitation_keys: @team.invitation_keys, hide_back: true %>
     <%# 🚅 super scaffolding will insert new children above this line. %>
     
     <%= render 'account/scaffolding/absolutely_abstract/creative_concepts/index', creative_concepts: @team.scaffolding_absolutely_abstract_creative_concepts, hide_back: true unless scaffolding_things_disabled? %>

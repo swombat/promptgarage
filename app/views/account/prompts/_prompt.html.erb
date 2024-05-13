@@ -10,17 +10,17 @@
     <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, prompt] %></td>
     <td><%= prompt.parent.nil? ? "Root Prompt" : prompt.parent.name %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
-    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
-    <td class="buttons">
-      <% unless hide_actions %>
-        <% if can? :edit, prompt %>
-          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt], class: 'button-secondary button-smaller' %>
-        <% end %>
-        <% if can? :destroy, prompt %>
-          <%= button_to t('.buttons.shorthand.destroy'), [:account, prompt], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(prompt)) }, class: 'button-secondary button-smaller' %>
-        <% end %>
+    <td><%= prompt.metric_string %></td>
+    <!-- td class="buttons">
+      <%# unless hide_actions %>
+        <%# if can? :edit, prompt %>
+          <%#= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt], class: 'button-secondary button-smaller' %>
+        <%# end %>
+        <%# if can? :destroy, prompt %>
+          <%#= button_to t('.buttons.shorthand.destroy'), [:account, prompt], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(prompt)) }, class: 'button-secondary button-smaller' %>
+        <%# end %>
         <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
-      <% end %>
-    </td>
+      <%# end %>
+    </td -->
   </tr>
 <% end %>

@@ -9,9 +9,7 @@
     <%= render "shared/tables/checkbox", object: input_item %>
     <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, input_item] %></td>
     <td><%= render 'shared/attributes/belongs_to', attribute: :type %></td>
-    <td class="text-center"><%= render 'shared/attributes/option', attribute: :used %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
-    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
     <td class="buttons">
       <% unless hide_actions %>
         <% if can?(:edit, input_item) && !input_item.used %>

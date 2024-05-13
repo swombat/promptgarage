@@ -58,5 +58,9 @@ class Prompt < ApplicationRecord
   def editable?
     prompt_executions.empty?
   end
+
+  def metric_string
+    "#{prompt_executions.count} (#{prompt_executions.collect { |execution| execution.outputs.count }.sum})"
+  end
   # 🚅 add methods above.
 end
