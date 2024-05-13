@@ -54,5 +54,9 @@ class Prompt < ApplicationRecord
 
     result.join("\n\n")
   end
+
+  def editable?
+    prompt_executions.empty?
+  end
   # 🚅 add methods above.
 end

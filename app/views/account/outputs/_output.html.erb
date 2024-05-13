@@ -9,15 +9,15 @@
     <%= render "shared/tables/checkbox", object: output %>
     <td><%= render 'shared/attributes/text', attribute: :label, url: [:account, output] %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
-    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td><%= output.results&.length %></td>
     <td class="buttons">
       <% unless hide_actions %>
-        <% if can? :edit, output %>
-          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, output], class: 'button-secondary button-smaller' %>
-        <% end %>
-        <% if can? :destroy, output %>
-          <%= button_to t('.buttons.shorthand.destroy'), [:account, output], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(output)) }, class: 'button-secondary button-smaller' %>
-        <% end %>
+        <%# if can? :edit, output %>
+          <%#= link_to t('.buttons.shorthand.edit'), [:edit, :account, output], class: 'button-secondary button-smaller' %>
+        <%# end %>
+        <%# if can? :destroy, output %>
+          <%#= button_to t('.buttons.shorthand.destroy'), [:account, output], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(output)) }, class: 'button-secondary button-smaller' %>
+        <%# end %>
         <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
       <% end %>
     </td>

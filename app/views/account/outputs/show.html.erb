@@ -12,20 +12,24 @@
         <% box.body do %>
           <% with_attribute_settings object: @output, strategy: :label do %>
             <%= render 'shared/attributes/text', attribute: :label %>
-            <%= render 'shared/attributes/text', attribute: :results %>
             <%= render 'shared/attributes/number', attribute: :input_tokens %>
             <%= render 'shared/attributes/number', attribute: :output_tokens %>
             <%= render 'shared/attributes/text', attribute: :message_id_api %>
             <%= render 'shared/attributes/number', attribute: :user_rating %>
+            <div class="bg-gray-100 p-2 rounded-md">
+              <code>
+                <%= simple_format @output.results %>
+              </code>
+            </div>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
           <% end %>
         <% end %>
 
         <% box.actions do %>
-          <%= link_to t('.buttons.edit'), [:edit, :account, @output], class: first_button_primary if can? :edit, @output %>
+          <%#= link_to t('.buttons.edit'), [:edit, :account, @output], class: first_button_primary if can? :edit, @output %>
           <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
-          <%= button_to t('.buttons.destroy'), [:account, @output], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@output)) } if can? :destroy, @output %>
-          <%= link_to t('global.buttons.back'), [:account, @prompt_execution, :outputs], class: first_button_primary %>
+          <%#= button_to t('.buttons.destroy'), [:account, @output], method: :delete, class: first_button_primary, data: { confirm: t('.buttons.confirmations.destroy', model_locales(@output)) } if can? :destroy, @output %>
+          <%= link_to t('global.buttons.back'), [:account, @prompt_execution.prompt], class: first_button_primary %>
         <% end %>
 
         <% box.raw_footer do %>
