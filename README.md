@@ -48,10 +48,19 @@ Have a look at [the proposed scaffolding](SCAFFOLDING.md) for more details about
 
 ## Current Status
 
-This is not yet useable, but getting there. Here are some WIP screenshots:
+This is now baseline useable, if you're brave. Here are some screenshot taking you through the journey of creating a prompt and executing it:
 
-![prompt view](https://github.com/swombat/promptcraft/blob/main/docs/prompt_view.png?raw=true)
-![execution preview](https://github.com/swombat/promptcraft/blob/main/docs/execution_preview.png?raw=true)
+![project details](https://github.com/swombat/promptcraft/blob/main/docs/1-project_details.png?raw=true)
+![input item](https://github.com/swombat/promptcraft/blob/main/docs/2-input_item_joke.png?raw=true)
+![prompt overview](https://github.com/swombat/promptcraft/blob/main/docs/3-prompt_overview.png?raw=true)
+![prompt section details](https://github.com/swombat/promptcraft/blob/main/docs/4-prompt_section_details.png?raw=true)
+![prompt section with arguments](https://github.com/swombat/promptcraft/blob/main/docs/5-prompt_section_with_arguments.png?raw=true)
+![execution step 1](https://github.com/swombat/promptcraft/blob/main/docs/6-execution_step_1.png?raw=true)
+![execution preview](https://github.com/swombat/promptcraft/blob/main/docs/7-execution_preview.png?raw=true)
+![execution gpt4](https://github.com/swombat/promptcraft/blob/main/docs/8-execution_gpt4-turbo.png?raw=true)
+![output gpt4](https://github.com/swombat/promptcraft/blob/main/docs/9-output_gpt4-turbo.png?raw=true)
+![execution opus](https://github.com/swombat/promptcraft/blob/main/docs/10-execution_opus.png?raw=true)
+![output opus](https://github.com/swombat/promptcraft/blob/main/docs/11-output_opus.png?raw=true)
 
 
 ## Information about Bullet Train

@@ -22,4 +22,26 @@ let themeConfig = require(themeConfigFile)
 // themeConfig.content.push('./app/additional/path')
 // themeConfig.plugins.push(require('additional-tailwind-plugin'))
 
+themeConfig.safelist = [
+  'bg-blue-100',
+  'bg-blue-200',
+  'bg-blue-300',
+  'bg-blue-400',
+  'bg-blue-500',
+  'bg-blue-600',
+  'bg-blue-700',
+  'bg-blue-800',
+  'bg-blue-900',
+  'border-blue-100',
+  'border-blue-200',
+  'border-blue-300',
+  'border-blue-400',
+  'border-blue-500',
+  'border-blue-600',
+  'border-blue-700',
+  'border-blue-800',
+  'border-blue-900',
+];
+
+
 module.exports = themeConfig

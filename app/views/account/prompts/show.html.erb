@@ -19,7 +19,7 @@
                   <span class="block text-2xs uppercase font-semibold py-2 dark:text-white">Arguments:</span>
                   <ul class="list-disc mx-6">
                     <% @prompt.arguments.each do |argument| %>
-                      <li><%= argument %></li>
+                      <li><%= placeholder_span("{{#{argument}}}").html_safe %></li>
                     <% end %>
                   </ul>
                 </div>
@@ -43,8 +43,9 @@
         <% end %>
       </div>
 
-      <div class="col-span-1">
-        <%= render 'account/prompt_sections/index', prompt_sections: @prompt.prompt_sections, hide_back: true %>
+      <div class="col-span-1 space-y-2">
+        <%= render 'account/prompt_sections/index', prompt_sections: @prompt.system_prompt_sections, hide_back: true, title: "Sections (system)" %>
+        <%= render 'account/prompt_sections/index', prompt_sections: @prompt.user_prompt_sections, hide_back: true, title: "Sections (user)" %>
       </div>
     </div>
     <%= render 'account/prompt_executions/index', prompt_executions: @prompt.prompt_executions, hide_back: true %>

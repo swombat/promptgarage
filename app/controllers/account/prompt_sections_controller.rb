@@ -55,7 +55,7 @@ class Account::PromptSectionsController < Account::ApplicationController
   def destroy
     @prompt_section.destroy
     respond_to do |format|
-      format.html { redirect_to [:account, @prompt, :prompt_sections], notice: I18n.t("prompt_sections.notifications.destroyed") }
+      format.html { redirect_to [:account, @prompt], notice: I18n.t("prompt_sections.notifications.destroyed") }
       format.json { head :no_content }
     end
   end

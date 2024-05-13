@@ -30,7 +30,7 @@ class InputItem < ApplicationRecord
     if preview
       expanded_tags ? "[{[{#{name} (#{type.name})}]}]" : "{{#{name} (#{type.name})}}"
     else
-      contents
+      "<#{type.name.gsub(' ', '')}>#{contents}</#{type.name.gsub(' ', '')}>"
     end
   end
   # 🚅 add methods above.

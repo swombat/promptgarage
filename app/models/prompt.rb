@@ -76,5 +76,13 @@ class Prompt < ApplicationRecord
   def metric_string
     "#{prompt_executions.count} (#{prompt_executions.collect { |execution| execution.outputs.count }.sum})"
   end
+
+  def system_prompt_sections
+    prompt_sections.where(system_prompt: true)
+  end
+
+  def user_prompt_sections
+    prompt_sections.where(system_prompt: false)
+  end
   # 🚅 add methods above.
 end

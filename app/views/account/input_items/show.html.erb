@@ -13,7 +13,9 @@
           <% with_attribute_settings object: @input_item, strategy: :label do %>
             <%= render 'shared/attributes/text', attribute: :name %>
             <%= render 'shared/attributes/belongs_to', attribute: :type %>
-            <%= render 'shared/attributes/text', attribute: :contents %>
+            <div class="bg-gray-100 p-2 rounded-md">
+              <code><%= tpl @input_item.contents %></code>
+            </div>
             <%= render 'shared/attributes/option', attribute: :used %>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
           <% end %>
