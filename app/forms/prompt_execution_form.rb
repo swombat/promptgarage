@@ -1,13 +1,13 @@
 class PromptExecutionForm
   include ActiveModel::Model
 
-  attr_accessor :prompt, :params, :label, :model, :preview
+  attr_accessor :prompt, :params, :label, :models, :preview
 
-  def initialize(prompt:, params: nil, label: nil, model: nil)
+  def initialize(prompt:, params: nil, label: nil, models: nil)
     self.prompt = prompt
     self.params = params
     self.label = label
-    self.model = model
+    self.models = models
 
     prompt.arguments.each do |argument|
       singleton_class.class_eval do

@@ -27,7 +27,7 @@ class Account::PromptExecutionsController < Account::ApplicationController
   def execute
     @prompt = Prompt.find(params[:prompt_id])
     @form = PromptExecutionForm.new(prompt: @prompt)
-    @form.assign_attributes(params.require(:prompt_execution_form).permit([:label, :model] + @prompt.arguments.collect { |arg| {arg.underscore.to_sym => [] } } ))
+    @form.assign_attributes(params.require(:prompt_execution_form).permit([:label, :model, {:models => []}] + @prompt.arguments.collect { |arg| {arg.underscore.to_sym => [] } } ))
 
     @form.all_objects.each do |object|
       authorize! :edit, object
@@ -38,14 +38,19 @@ class Account::PromptExecutionsController < Account::ApplicationController
 
       render :new, status: 422
     else
-      @execution = @prompt.prompt_executions.new(
-        model: params[:prompt_execution_form][:model],
-        label: params[:prompt_execution_form][:label].blank? ? "#{@prompt.name}-#{Time.now.to_s}" : params[:prompt_execution_form][:label],
-      )
-      @execution.arguments = @form.argument_values
+      output = nil
+      models = @form.models.reject(&:blank?).compact.uniq
+      models.each do |model|
+        @execution = @prompt.prompt_executions.new(
+          model: model,
+          label: params[:prompt_execution_form][:label].blank? ? "#{@prompt.name}-#{Time.now.to_s}" : params[:prompt_execution_form][:label],
+        )
+        @execution.arguments = @form.argument_values
 
-      output = @execution.execute
-      redirect_to [:account, output]
+        output = @execution.execute
+      end
+
+      redirect_to models.length > 1 ? [:account, @prompt] : [:account, output]
     end
   end
 
