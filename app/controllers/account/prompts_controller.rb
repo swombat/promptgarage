@@ -59,6 +59,11 @@ class Account::PromptsController < Account::ApplicationController
     end
   end
 
+  def fork
+    @prompt = Prompt.find(params[:prompt_id]).fork
+    redirect_to [:account, @prompt]
+  end
+
   private
 
   if defined?(Api::V1::ApplicationController)

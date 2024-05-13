@@ -3,9 +3,10 @@
 <% collection ||= :prompt_sections %>
 <% hide_actions ||= false %>
 <% hide_back ||= false %>
+<% row_class = prompt.editable? ? "hover:bg-blue-100 cursor-pointer hover:animate-pulse" : "" %>
 
 <% with_attribute_settings object: prompt_section do %>
-  <tr data-id="<%= prompt_section.id %>">
+  <tr data-id="<%= prompt_section.id %>" class="<%= row_class %>">
     <%= render "shared/tables/checkbox", object: prompt_section %>
     <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, prompt_section] %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>

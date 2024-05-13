@@ -25,8 +25,22 @@ class Prompt < ApplicationRecord
 
   # 🚅 add delegations above.
 
+  def fork
+    new_prompt = project.prompts.create(name: "#{name} (forked)")
+    new_prompt.parent = self
+    new_prompt.save
+    prompt_sections.each do |section|
+      new_prompt.prompt_sections.create(
+        name: section.name,
+        contents: section.contents,
+        sort_order: section.sort_order
+      )
+    end
+    new_prompt
+  end
+
   def valid_parents
-    [parent]
+    project.prompts
   end
 
   def arguments
