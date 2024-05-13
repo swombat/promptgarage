@@ -29,6 +29,9 @@ rails generate super_scaffold Output PromptExecution,Prompt,Project,Team label:t
 
 # Temporary hack until https://github.com/bullet-train-co/bullet_train/issues/1457 is fixed
 rails generate super_scaffold:field InputItem used:boolean
+
+# Refinements
+rails generate super_scaffold:field PromptSection system_prompt:boolean
 ```
 
 ## Planned Scaffolds

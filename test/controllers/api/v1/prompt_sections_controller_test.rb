@@ -35,6 +35,7 @@ def assert_proper_object_serialization(prompt_section_data)
 
   assert_equal_or_nil prompt_section_data['name'], prompt_section.name
   assert_equal_or_nil prompt_section_data['contents'], prompt_section.contents
+  assert_equal_or_nil prompt_section_data['system_prompt'], prompt_section.system_prompt
   # 🚅 super scaffolding will insert new fields above this line.
 
   assert_equal prompt_section_data["prompt_id"], prompt_section.prompt_id

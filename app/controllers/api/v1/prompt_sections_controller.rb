@@ -47,6 +47,7 @@ if defined?(Api::V1::ApplicationController)
           :name,
           :description,
           :contents,
+          :system_prompt,
           # 🚅 super scaffolding will insert new fields above this line.
           *permitted_arrays,
           # 🚅 super scaffolding will insert new arrays above this line.

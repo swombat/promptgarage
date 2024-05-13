@@ -43,6 +43,15 @@ en:
         heading: *contents
         api_title: *contents
         api_description: *contents
+      system_prompt:
+        _: &system_prompt System Prompt
+        label: *system_prompt
+        heading: *system_prompt
+        api_title: *system_prompt
+        api_description: *system_prompt
+        options:
+          yes: "Yes"
+          no: "No"
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
         _: &created_at Added
@@ -101,6 +110,7 @@ en:
       prompt_section:
         name: *name
         contents: *contents
+        system_prompt: *system_prompt
         # 🚅 super scaffolding will insert new activerecord attributes above this line.
         created_at: *created_at
         updated_at: *updated_at
