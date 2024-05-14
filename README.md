@@ -58,9 +58,8 @@ This is now baseline useable, if you're brave. Here are some screenshot taking y
 ![execution step 1](https://github.com/swombat/promptgarage/blob/main/docs/6-execution_step_1.png?raw=true)
 ![execution preview](https://github.com/swombat/promptgarage/blob/main/docs/7-execution_preview.png?raw=true)
 ![execution gpt4](https://github.com/swombat/promptgarage/blob/main/docs/8-execution_gpt4-turbo.png?raw=true)
-![output gpt4](https://github.com/swombat/promptgarage/blob/main/docs/9-output_gpt4-turbo.png?raw=true)
 ![execution opus](https://github.com/swombat/promptgarage/blob/main/docs/10-execution_opus.png?raw=true)
-![output opus](https://github.com/swombat/promptgarage/blob/main/docs/11-output_opus.png?raw=true)
+![outputs](https://github.com/swombat/promptgarage/blob/main/docs/12-outputs.png?raw=true)
 
 
 ## Information about Bullet Train
