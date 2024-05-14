@@ -12,4 +12,8 @@ module ApplicationHelper
     lexer = Rouge::Lexers::JSON.new
     formatter.format(lexer.lex(JSON.pretty_generate(JSON.parse(json))))
   end
+
+  def api_key_mask(api_key)
+    api_key[0..3] + "****" + api_key[-4..-1]
+  end
 end
