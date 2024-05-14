@@ -80,6 +80,18 @@ en:
       update: "Update a Output"
       destroy: "Delete a Output"
       fields: *fields
+    all_outputs:
+      section: "%{prompt_executions_possessive} Outputs"
+      header: Output Details
+      description: Below are the details we have for %{output_name}.
+      manage_description: You'll also find options for updating these details or removing %{output_name} from %{prompt_execution_name} entirely.
+      contexts:
+        prompt_execution:
+          header: Outputs
+          description: Below is a list of Outputs that have been added for %{prompt_execution_name}.
+          description_empty: No Outputs have been added for %{prompt_execution_name}.
+      fields: *fields
+      buttons: *buttons
     index:
       section: "%{prompt_executions_possessive} Outputs"
       contexts:

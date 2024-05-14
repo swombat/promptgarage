@@ -59,6 +59,15 @@ class Account::OutputsController < Account::ApplicationController
     end
   end
 
+  def all_outputs
+    Rails.logger.debug("-------------------")
+    @prompt = Prompt.find(params[:prompt_id])
+    @execution = @prompt.prompt_executions.find(params[:prompt_execution_id])
+    @executions = @prompt.prompt_executions.where(label: @execution.label)
+    @outputs = @executions.collect(&:outputs).flatten
+    debug(@outputs)
+  end
+
   private
 
   if defined?(Api::V1::ApplicationController)

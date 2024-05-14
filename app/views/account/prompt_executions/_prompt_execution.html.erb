@@ -7,7 +7,7 @@
 <% with_attribute_settings object: prompt_execution do %>
   <tr data-id="<%= prompt_execution.id %>">
     <%= render "shared/tables/checkbox", object: prompt_execution %>
-    <td><%= render 'shared/attributes/text', attribute: :label, url: [:account, prompt_execution] %></td>
+    <td><%= render 'shared/attributes/text', attribute: :label, url: account_prompt_all_outputs_path(prompt, prompt_execution) %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
     <td><%= render 'shared/attributes/text', attribute: :model %></td>
     <td><%= prompt_execution.outputs.count %></td>

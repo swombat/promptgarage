@@ -73,6 +73,7 @@ Rails.application.routes.draw do
           resources :input_types
           resources :input_items
           resources :prompts do
+            get "all_outputs/:prompt_execution_id", to: "outputs#all_outputs", as: :all_outputs
             resources :prompt_sections, concerns: [:sortable]
             post :execute, to: "prompt_executions#execute"
             post :fork, to: "prompts#fork"
