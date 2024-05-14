@@ -1,11 +1,11 @@
 en:
   application:
-    name: PromptBench
+    name: PromptGarage
     owner: Daniel Tenner
     description: "A workbench to help design long prompts."
-    keywords: promptbench ai promp workbench
-    support_email: daniel.promptbench@tenner.org
-    key: promptbench
+    keywords: promptgarage ai promp workgarage
+    support_email: daniel.promptgarage@tenner.org
+    key: promptgarage
   webhooks/outgoing/endpoints:
     fields:
       api_version:

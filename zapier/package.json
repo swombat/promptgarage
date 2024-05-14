@@ -1,5 +1,5 @@
 {
-  "name": "promptbench",
+  "name": "promptgarage",
   "version": "1.0.0",
   "description": "Integrate Zapier with PromptBench",
   "main": "index.js",
