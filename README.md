@@ -1,4 +1,4 @@
-# PromptCraft
+# PromptBench
 
 ## Getting Started
 
@@ -18,7 +18,7 @@
 3. Start the application with `bin/dev`.
 4. Visit http://localhost:3000.
 
-Note: PromptCraft will by default use `redis://localhost:6379/10` for Sidekiq, which should coexist just fine with other Sidekiq apps running alongside it. If that's no good for you, change it in `config/initializers/sidekiq.rb`.
+Note: PromptBench will by default use `redis://localhost:6379/10` for Sidekiq, which should coexist just fine with other Sidekiq apps running alongside it. If that's no good for you, change it in `config/initializers/sidekiq.rb`.
 
 ## Rationale
 
@@ -26,7 +26,7 @@ When crafting large and complicated prompts with non-trivial imputs and outputs,
 
 This doesn't work for me. I want to be able to evolve and tweak large prompts involving substantial amounts of source data, without having to copy and paste between chat boxes and text documents on my computer.
 
-Enter PromptCraft.
+Enter PromptBench.
 
 Here's a general process that it might support:
 
@@ -50,17 +50,17 @@ Have a look at [the proposed scaffolding](SCAFFOLDING.md) for more details about
 
 This is now baseline useable, if you're brave. Here are some screenshot taking you through the journey of creating a prompt and executing it:
 
-![project details](https://github.com/swombat/promptcraft/blob/main/docs/1-project_details.png?raw=true)
-![input item](https://github.com/swombat/promptcraft/blob/main/docs/2-input_item_joke.png?raw=true)
-![prompt overview](https://github.com/swombat/promptcraft/blob/main/docs/3-prompt_overview.png?raw=true)
-![prompt section details](https://github.com/swombat/promptcraft/blob/main/docs/4-prompt_section_details.png?raw=true)
-![prompt section with arguments](https://github.com/swombat/promptcraft/blob/main/docs/5-prompt_section_with_arguments.png?raw=true)
-![execution step 1](https://github.com/swombat/promptcraft/blob/main/docs/6-execution_step_1.png?raw=true)
-![execution preview](https://github.com/swombat/promptcraft/blob/main/docs/7-execution_preview.png?raw=true)
-![execution gpt4](https://github.com/swombat/promptcraft/blob/main/docs/8-execution_gpt4-turbo.png?raw=true)
-![output gpt4](https://github.com/swombat/promptcraft/blob/main/docs/9-output_gpt4-turbo.png?raw=true)
-![execution opus](https://github.com/swombat/promptcraft/blob/main/docs/10-execution_opus.png?raw=true)
-![output opus](https://github.com/swombat/promptcraft/blob/main/docs/11-output_opus.png?raw=true)
+![project details](https://github.com/swombat/promptbench/blob/main/docs/1-project_details.png?raw=true)
+![input item](https://github.com/swombat/promptbench/blob/main/docs/2-input_item_joke.png?raw=true)
+![prompt overview](https://github.com/swombat/promptbench/blob/main/docs/3-prompt_overview.png?raw=true)
+![prompt section details](https://github.com/swombat/promptbench/blob/main/docs/4-prompt_section_details.png?raw=true)
+![prompt section with arguments](https://github.com/swombat/promptbench/blob/main/docs/5-prompt_section_with_arguments.png?raw=true)
+![execution step 1](https://github.com/swombat/promptbench/blob/main/docs/6-execution_step_1.png?raw=true)
+![execution preview](https://github.com/swombat/promptbench/blob/main/docs/7-execution_preview.png?raw=true)
+![execution gpt4](https://github.com/swombat/promptbench/blob/main/docs/8-execution_gpt4-turbo.png?raw=true)
+![output gpt4](https://github.com/swombat/promptbench/blob/main/docs/9-output_gpt4-turbo.png?raw=true)
+![execution opus](https://github.com/swombat/promptbench/blob/main/docs/10-execution_opus.png?raw=true)
+![output opus](https://github.com/swombat/promptbench/blob/main/docs/11-output_opus.png?raw=true)
 
 
 ## Information about Bullet Train

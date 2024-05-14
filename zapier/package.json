@@ -1,7 +1,7 @@
 {
-  "name": "promptcraft",
+  "name": "promptbench",
   "version": "1.0.0",
-  "description": "Integrate Zapier with PromptCraft",
+  "description": "Integrate Zapier with PromptBench",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -t 10000"

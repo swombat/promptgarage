@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: promptcraft_development
+  database: promptbench_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: promptcraft-app
+  #username: promptbench-app
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: promptcraft_test
+  database: promptbench_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,7 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: promptcraft_production
-  username: promptcraft
+  database: promptbench_production
+  username: promptbench
   password: <%= ENV['PROMPTCRAFT_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>

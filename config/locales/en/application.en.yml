@@ -1,11 +1,11 @@
 en:
   application:
-    name: PromptCraft
-    owner: Unidentified Developer
-    description: "You can update this description in `config/locales/en/application.en.yml`."
-    keywords: promptcraft seo keywords
-    support_email: change.me@localhost
-    key: promptcraft
+    name: PromptBench
+    owner: Daniel Tenner
+    description: "A workbench to help design long prompts."
+    keywords: promptbench ai promp workbench
+    support_email: daniel.promptbench@tenner.org
+    key: promptbench
   webhooks/outgoing/endpoints:
     fields:
       api_version:
