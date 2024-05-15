@@ -1,0 +1,34 @@
+<%= render 'account/shared/page' do |page| %>
+  <% page.title "Import Input Types" %>
+  <% page.body do %>
+    <% @input_types.group_by(&:project).each do |project, input_types| %>
+      <%= cable_ready_updates_for @project, :input_types do %>
+        <%= render 'account/shared/box', divider: true do |box| %>
+          <% box.title project.name %>
+
+          <% box.body do %>
+            <div class="space-y-6">
+              <%= cable_ready_updates_for project, :input_types do %>
+                <% input_types.reject { |input_type| @project.input_types.collect(&:name).include?(input_type.name) }.each do |input_type| %>
+                  <div class="m-4">
+                    <div class="float-right">
+                      <%= link_to "Import", account_project_import_input_path(@project, input_type), class: "button", method: "post" %>
+                    </div>
+                    <h3 class="font-lg font-bold"><%= input_type.name %></h3>
+                    <div class="">
+                      Inputs (<%= input_type.input_items.count %>): <%= input_type.input_items.collect(&:name).join(", ") %>
+                    </div>
+                    
+                  </div>
+                  <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to t('global.buttons.back'), [:account, @project], class: "button" %>
+  <% end %>
+<% end %>

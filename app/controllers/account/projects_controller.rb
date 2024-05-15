@@ -59,6 +59,21 @@ class Account::ProjectsController < Account::ApplicationController
     end
   end
 
+  def import_inputs
+    @project = current_team.projects.find(params[:project_id])
+    @input_types = current_team.projects.reject { |project| project.id == @project.id }.collect(&:input_types).flatten
+
+    if request.post?
+      @input_type = InputType.find(params[:input_type_id])
+      if current_team.projects.collect(&:input_types).flatten.collect(&:id).include?(@input_type.id)
+        @new_type = @project.input_types.create(name: @input_type.name, description: @input_type.description)
+        @input_type.input_items.each do |item|
+          @new_type.input_items.create(name: item.name, contents: item.contents, project_id: @project.id, used: false)
+        end
+      end
+    end
+  end
+
   private
 
   if defined?(Api::V1::ApplicationController)

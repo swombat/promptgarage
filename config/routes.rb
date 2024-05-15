@@ -70,6 +70,8 @@ Rails.application.routes.draw do
         resources :invitation_keys
         resources :intelligence_credentials
         resources :projects do
+          get :import_inputs, to: "projects#import_inputs"
+          post "import_inputs/:input_type_id", to: "projects#import_inputs", as: :import_input
           resources :input_types
           resources :input_items
           resources :prompts do

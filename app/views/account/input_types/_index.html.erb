@@ -38,7 +38,8 @@
         <% unless hide_actions %>
           <% if context == project %>
             <% if can? :create, InputType.new(project: project) %>
-              <%= link_to t('.buttons.new'), [:new, :account, project, :input_type], class: "#{first_button_primary(:input_type)} new" %>
+              <%= link_to t('.buttons.new'), [:new, :account, project, :input_type], class: "button new" %>
+              <%= link_to "Import Input Types", [:account, project, :import_inputs], class: "#{first_button_primary(:input_type)} new" %>
             <% end %>
           <% end %>
 
