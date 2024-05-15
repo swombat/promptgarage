@@ -392,6 +392,8 @@ GEM
       base64
     knapsack_pro (7.1.0)
       rake
+    kramdown (2.4.0)
+      rexml
     language_server-protocol (3.17.0.3)
     launchy (3.0.1)
       addressable (~> 2.8)
@@ -776,6 +778,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   knapsack_pro
+  kramdown
   letter_opener
   magic_test
   minitest-reporters

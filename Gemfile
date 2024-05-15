@@ -215,5 +215,6 @@ gem 'ruby-openai'
 gem 'anthropic', git: "https://github.com/swombat/anthropic"
 gem 'http'
 gem 'rouge'
+gem 'kramdown'
 
 # 🚅 super scaffolding will insert new oauth providers above this line.

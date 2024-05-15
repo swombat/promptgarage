@@ -1,4 +1,10 @@
+require "kramdown"
+
 module TemplateHelper
+  def mkd(text)
+    Kramdown::Document.new(text).to_html
+  end
+
   def tpl(text, color: "blue")
     simple_format(highlight_set_placeholder(highlight_placeholder(text, color: color)))
   end
