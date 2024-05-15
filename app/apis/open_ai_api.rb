@@ -20,7 +20,7 @@ class OpenAiApi < LlmApi
     raise "Unsupported stream response type #{stream_response_type}" unless [:text].include?(stream_response_type)
     response = {
       usage: {
-        input_tokens: OpenAI.rough_token_count(params[:prompt]),
+        input_tokens: OpenAI.rough_token_count("#{params[:system]} #{params[:user]}"),
         output_tokens: 0,
       },
       id: nil
@@ -28,7 +28,7 @@ class OpenAiApi < LlmApi
 
     parameters = {
       model: params[:model],
-      messages: [{ role: "user", content: params[:prompt]}],
+      messages: [],
       temperature: params[:temperature] || 0.7,
       stream: proc do |chunk, _bytesize|
         response[:id] = chunk["id"] if response[:id].nil? && chunk["id"].present?
@@ -43,6 +43,8 @@ class OpenAiApi < LlmApi
       end
     }
 
+    parameters[:messages] << { role: "system", content: params[:system] } if params[:system]
+    parameters[:messages] << { role: "user", content: params[:user] } if params[:user]
     @client.chat(parameters: parameters)
 
     # Fake it for now

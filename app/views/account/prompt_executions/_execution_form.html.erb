@@ -29,24 +29,56 @@
             Empty <span class="font-mono bg-red-100 p-0.5 rounded-md border-red-200 border-2">{{arguments}}</span> will be left blank in the submitted prompt.
           </div>
         <% end %>
+
+        <% preview_prompt = form_object.preview_prompt_text %>
+        <% if preview_prompt[:system].present? %>
+          <div class="font-bold font-mono">System prompt:</div>
+          <div class="bg-gray-100 p-2 rounded-md">
+            <code>
+              <%= tpl(preview_prompt[:system], color: "red") %>
+            </code>
+          </div>
+          <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
+        <% end %>
+        <% if preview_prompt[:user].present? %>
+          <div class="font-bold font-mono">User prompt:</div>
+          <div class="bg-gray-100 p-2 rounded-md">
+            <code>
+              <%= tpl(preview_prompt[:user], color: "red") %>
+            </code>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="text-lg font-bold underline my-4">Template:</div>
+      <% if form_object.prompt.system_prompt_sections.present? %>
+        <div class="font-bold font-mono">System prompt:</div>
         <div class="bg-gray-100 p-2 rounded-md">
           <code>
-            <%= tpl(form_object.preview_prompt_text, color: "red") %>
+            <% form_object.prompt.system_prompt_sections.each do |section| %>
+              <div title="<%= "#{section.name}: #{section.description.to_plain_text}" %>">
+                <%= tpl section.contents %>
+              </div>
+              <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
+            <% end %>
           </code>
         </div>
       <% end %>
 
-      <div class="text-lg font-bold underline my-4">Template:</div>
-      <div class="bg-gray-100 p-2 rounded-md">
-        <code>
-          <% form_object.prompt.prompt_sections.each do |section| %>
-            <div title="<%= "#{section.name}: #{section.description.to_plain_text}" %>">
-              <%= tpl section.contents %>
-            </div>
-            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
-          <% end %>
-        </code>
-      </div>
+      <% if form_object.prompt.user_prompt_sections.present? %>
+        <div class="font-bold font-mono">User prompt:</div>
+        <div class="bg-gray-100 p-2 rounded-md">
+          <code>
+            <% form_object.prompt.user_prompt_sections.each do |section| %>
+              <div title="<%= "#{section.name}: #{section.description.to_plain_text}" %>">
+                <%= tpl section.contents %>
+              </div>
+              <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700 last:hidden">
+            <% end %>
+          </code>
+        </div>
+      <% end %>
+      
     </div>
   <% end %>
 <% end %>

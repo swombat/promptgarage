@@ -52,21 +52,35 @@ class Prompt < ApplicationRecord
   end
 
   def compiled_prompt(args, preview: false)
-    result = []
+    result = {
+      system: [],
+      user: []
+    }
 
-    prompt_sections.each do |section|
-      content = section.contents
-      section.arguments.each do |argument|
-        next unless args[argument.to_sym]
-
-        inputs = InputItem.where(id: args[argument.to_sym].collect(&:to_i))
-        inputs_as_string = inputs.collect { |input| input.as_string(preview: preview) }.join("\n\n")
-        content = content.gsub("{{#{argument}}}", inputs_as_string)
-      end
-      result << content
+    system_prompt_sections.each do |section|
+      result[:system] << compile_section(section, args, preview: preview)
     end
 
-    result.join("\n\n")
+    user_prompt_sections.each do |section|
+      result[:user] << compile_section(section, args, preview: preview)
+    end
+
+    {
+      system: result[:system].join("\n\n"),
+      user: result[:user].join("\n\n")
+    }
+  end
+
+  def compile_section(section, args, preview: false)
+    content = section.contents
+    section.arguments.each do |argument|
+      next unless args[argument.to_sym]
+
+      inputs = InputItem.where(id: args[argument.to_sym].collect(&:to_i))
+      inputs_as_string = inputs.collect { |input| input.as_string(preview: preview) }.join("\n\n")
+      content = content.gsub("{{#{argument}}}", inputs_as_string)
+    end
+    content
   end
 
   def editable?

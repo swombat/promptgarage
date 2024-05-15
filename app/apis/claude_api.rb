@@ -13,7 +13,7 @@ class ClaudeApi < LlmApi
   end
 
   # Expected in +params+:
-  # - :prompt
+  # - :user - user prompt
   # - :model
   # - :system (optional)
   # - :format (optional)
@@ -24,11 +24,13 @@ class ClaudeApi < LlmApi
       model: params[:model],
       temperature: 0.9,
       max_tokens: params[:max_tokens] || 4096,
-      messages: [{ 'role': 'user', 'content': params[:prompt] }],
+      messages: [],
       stream: stream_proc,
       preprocess_stream: stream_response_type
     }
+    debug(parameters.inspect, "parameters")
 
+    parameters[:messages] << { 'role': 'user', 'content': params[:user] } if params[:user]
     parameters[:messages] << { 'role': 'assistant', 'content': params[:format] } if params[:format].present?
     parameters[:system] = params[:system] if params[:system].present?
 

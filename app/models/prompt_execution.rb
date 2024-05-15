@@ -27,10 +27,10 @@ class PromptExecution < ApplicationRecord
 
   def arguments=(args)
     self.parameters_summary = args.to_json
-    self.compiled_parameters = {
-      prompt: prompt.compiled_prompt(args),
-      model: model
-    }.to_json
+    _compiled_parameters = prompt.compiled_prompt(args)
+    _compiled_parameters[:model] = model
+    self.compiled_parameters = _compiled_parameters.to_json
+
     save # if persisted?
   end
 
@@ -62,6 +62,7 @@ class PromptExecution < ApplicationRecord
 
   def execute_async(output)
     api = team.api_for(model)
+    # debug("params", JSON.parse(compiled_parameters))
     response = api.get_response(
       params: JSON.parse(compiled_parameters),
       stream_proc: Proc.new { |incremental_response| output.update_attribute(:results, incremental_response) },
