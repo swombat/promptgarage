@@ -43,20 +43,22 @@
 
           <% box.body do %>
             <% outputs.sort_by(&:created_at).reverse.each_with_index do |output, index| %>
-              <% with_attribute_settings object: output, strategy: :label do %>
-                <div class="bg-gray-100 p-2 rounded-md relative">
-                  <div class="group float-right">
-                    <span class="hidden group-hover:block w-64 bg-gray-200 p-2 rounded-md font-mono text-2xs absolute right-0">
-                      <b>Tokens (in/out):</b> <%= output.input_tokens %>/<%= output.output_tokens %><br/>
-                      <b>MSG ID:</b> <%= output.message_id_api %><br/>
-                      <%= time_ago_in_words(output.created_at) %> ago
-                    </span>
-                    <span class="block group-hover:hidden">?</span>
+              <%= cable_ready_updates_for output do %>
+                <% with_attribute_settings object: output, strategy: :label do %>
+                  <div class="bg-gray-100 p-2 rounded-md relative">
+                    <div class="group float-right">
+                      <span class="hidden group-hover:block w-64 bg-gray-200 p-2 rounded-md font-mono text-2xs absolute right-0">
+                        <b>Tokens (in/out):</b> <%= output.input_tokens %>/<%= output.output_tokens %><br/>
+                        <b>MSG ID:</b> <%= output.message_id_api %><br/>
+                        <%= time_ago_in_words(output.created_at) %> ago
+                      </span>
+                      <span class="block group-hover:hidden">?</span>
+                    </div>
+                    <code>
+                      <%= simple_format output.results %>
+                    </code>
                   </div>
-                  <code>
-                    <%= simple_format output.results %>
-                  </code>
-                </div>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
