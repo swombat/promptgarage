@@ -79,6 +79,7 @@ Rails.application.routes.draw do
             post :fork, to: "prompts#fork"
             resources :prompt_executions do
               post :execute_again, to: "prompt_executions#execute_again"
+              post :execute_all_again, to: "prompt_executions#execute_all_again"
               resources :outputs
             end
           end

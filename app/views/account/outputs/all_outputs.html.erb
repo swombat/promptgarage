@@ -1,6 +1,29 @@
 <%= render 'account/shared/page' do |page| %>
   <% page.title "Outputs for #{@prompt.name} - #{@execution.label}" %>
   <% page.body do %>
+    <% with_attribute_settings object: @execution, strategy: :label do %>
+      <div class="space-y-4">
+        <div class="group">
+          <label class="block text-2xs uppercase font-semibold dark:text-white">
+            Compiled Parameters (?)
+          </label>
+          <div class="dark:bg-zinc-800 bg-gray-100 p-2 rounded-md hidden group-hover:block">
+            <pre class="whitespace-pre-wrap highlight"><code><%= pretty_print_json(@execution.compiled_parameters).html_safe %></code></pre>
+          </div>
+        </div>
+        <div class="group">
+          <label class="block text-2xs uppercase font-semibold dark:text-white">
+            Parameters Summary (?)
+          </label>
+          <div class="dark:bg-zinc-800 bg-gray-100 p-2 my-0 rounded-md hidden group-hover:block">
+            <pre class="whitespace-pre-wrap highlight"><code><%= pretty_print_json(@execution.parameters_summary_enriched).html_safe %></code></pre>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%= button_to "Execute All Again", [:account, @execution, :execute_all_again], method: :post, class: first_button_primary %>
+
     <% @outputs.sort_by { |output| output.created_at }.reverse.each do |output| %>
       <%= cable_ready_updates_for output do %>
         <%= render 'account/shared/box', divider: true do |box| %>

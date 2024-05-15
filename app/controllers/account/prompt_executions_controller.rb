@@ -39,18 +39,19 @@ class Account::PromptExecutionsController < Account::ApplicationController
       render :new, status: 422
     else
       output = nil
+      label = params[:prompt_execution_form][:label].blank? ? "#{@prompt.name}-#{Time.now.to_s}" : params[:prompt_execution_form][:label]
       models = @form.models.reject(&:blank?).compact.uniq
       models.each do |model|
         @execution = @prompt.prompt_executions.new(
           model: model,
-          label: params[:prompt_execution_form][:label].blank? ? "#{@prompt.name}-#{Time.now.to_s}" : params[:prompt_execution_form][:label],
+          label: label,
         )
         @execution.arguments = @form.argument_values
 
         output = @execution.execute
       end
 
-      redirect_to models.length > 1 ? [:account, @prompt] : [:account, output]
+      redirect_to models.length > 1 ? account_prompt_all_outputs_path(@prompt, @execution) : [:account, output]
     end
   end
 
@@ -58,6 +59,16 @@ class Account::PromptExecutionsController < Account::ApplicationController
     @execution = PromptExecution.find(params[:prompt_execution_id])
     output = @execution.execute
     redirect_to [:account, output]
+  end
+
+  def execute_all_again
+    @execution = PromptExecution.find(params[:prompt_execution_id])
+    @executions = @execution.prompt.prompt_executions.where(label: @execution.label)
+    output = nil
+    @executions.each do |execution|
+      output = execution.execute
+    end
+    redirect_to account_prompt_all_outputs_path(@execution.prompt, @execution)
   end
 
   # POST /account/prompts/:prompt_id/prompt_executions
