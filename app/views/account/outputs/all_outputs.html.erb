@@ -19,41 +19,48 @@
             <pre class="whitespace-pre-wrap highlight"><code><%= pretty_print_json(@execution.parameters_summary_enriched).html_safe %></code></pre>
           </div>
         </div>
+        <div class="group">
+          <label class="block text-2xs uppercase font-semibold dark:text-white">
+            Models (?)
+          </label>
+          <div class="dark:bg-zinc-800 bg-gray-100 p-2 my-0 rounded-md hidden group-hover:block">
+            <pre class="whitespace-pre-wrap highlight"><code><%= @execution.linked_executions.map(&:model).join(', ') %></code></pre>
+          </div>
+        </div>
+
       </div>
     <% end %>
 
     <%= button_to "Execute All Again", [:account, @execution, :execute_all_again], method: :post, class: first_button_primary %>
 
-    <% @outputs.sort_by { |output| output.created_at }.reverse.each do |output| %>
-      <%= cable_ready_updates_for output do %>
-        <%= render 'account/shared/box', divider: true do |box| %>
-          <% box.title "#{output.prompt_execution.model}" %>
-          <% box.description do %>
-            <%#= t('.description') %>
-            <%#= t('.manage_description') if can? :manage, output %>
-          <% end %>
+    <% 
+      grouped_outputs = @outputs.group_by { |output| output.prompt_execution.model }
+    %>
 
-          <% box.shortcut_buttons do %>
-            <div class="group">
-              <span class="text-white group-hover:text-black">Tokens (in/out):<%= output.input_tokens %>/<%= output.output_tokens %> // <%= output.message_id_api %></span>
-              ?
-            </div>
-          <% end %>
+    <% grouped_outputs.each do |model, outputs| %>
+        <%= render 'account/shared/box', divider: true do |box| %>
+          <% box.title "#{model}" %>
 
           <% box.body do %>
-            <% with_attribute_settings object: output, strategy: :label do %>
-              <div class="bg-gray-100 p-2 rounded-md">
-                <code>
-                  <%= simple_format output.results %>
-                </code>
-              </div>
-              <%# 🚅 super scaffolding will insert new fields above this line. %>
+            <% outputs.sort_by(&:created_at).reverse.each_with_index do |output, index| %>
+              <% with_attribute_settings object: output, strategy: :label do %>
+                <div class="bg-gray-100 p-2 rounded-md relative">
+                  <div class="group float-right">
+                    <span class="hidden group-hover:block w-64 bg-gray-200 p-2 rounded-md font-mono text-2xs absolute right-0">
+                      <b>Tokens (in/out):</b> <%= output.input_tokens %>/<%= output.output_tokens %><br/>
+                      <b>MSG ID:</b> <%= output.message_id_api %><br/>
+                      <%= time_ago_in_words(output.created_at) %> ago
+                    </span>
+                    <span class="block group-hover:hidden">?</span>
+                  </div>
+                  <code>
+                    <%= simple_format output.results %>
+                  </code>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
-
-      <%# 🚅 super scaffolding will insert new children above this line. %>
     <% end %>
   <% end %>
 <% end %>

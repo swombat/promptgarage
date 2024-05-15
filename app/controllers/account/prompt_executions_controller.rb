@@ -63,7 +63,7 @@ class Account::PromptExecutionsController < Account::ApplicationController
 
   def execute_all_again
     @execution = PromptExecution.find(params[:prompt_execution_id])
-    @executions = @execution.prompt.prompt_executions.where(label: @execution.label)
+    @executions = @execution.linked_executions
     output = nil
     @executions.each do |execution|
       output = execution.execute

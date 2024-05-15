@@ -21,6 +21,10 @@ class PromptExecution < ApplicationRecord
 
   # 🚅 add delegations above.
 
+  def linked_executions
+    prompt.prompt_executions.where(label: label)
+  end
+
   def arguments=(args)
     self.parameters_summary = args.to_json
     self.compiled_parameters = {

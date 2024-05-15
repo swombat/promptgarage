@@ -62,7 +62,7 @@ class Account::OutputsController < Account::ApplicationController
   def all_outputs
     @prompt = Prompt.find(params[:prompt_id])
     @execution = @prompt.prompt_executions.find(params[:prompt_execution_id])
-    @executions = @prompt.prompt_executions.where(label: @execution.label)
+    @executions = @execution.linked_executions
     @outputs = @executions.collect(&:outputs).flatten
   end
 
