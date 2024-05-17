@@ -13,10 +13,10 @@
     <td><%= number_with_delimiter OpenAI.rough_token_count prompt_section.contents %> tokens, <%= prompt_section.arguments.length %> arguments</td>
     <td class="buttons">
       <% unless hide_actions %>
-        <% if can? :edit, prompt_section %>
+        <% if can?(:edit, prompt_section) && prompt_section.editable? %>
           <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, prompt_section], class: 'button-secondary button-smaller' %>
         <% end %>
-        <% if can? :destroy, prompt_section %>
+        <% if can?(:destroy, prompt_section) && prompt_section.editable? %>
           <%= button_to t('.buttons.shorthand.destroy'), [:account, prompt_section], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(prompt_section)) }, class: 'button-secondary button-smaller' %>
         <% end %>
         <%# 🚅 super scaffolding will insert new action model buttons above this line. %>

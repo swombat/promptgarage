@@ -30,5 +30,9 @@ class PromptSection < ApplicationRecord
     contents.scan(/{{(.*?)}}/).flatten
   end
 
+  def editable?
+    prompt.editable?
+  end
+
   # 🚅 add methods above.
 end

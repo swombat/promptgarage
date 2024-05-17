@@ -33,7 +33,8 @@ class Prompt < ApplicationRecord
       new_prompt.prompt_sections.create(
         name: section.name,
         contents: section.contents,
-        sort_order: section.sort_order
+        sort_order: section.sort_order,
+        system_prompt: section.system_prompt
       )
     end
     new_prompt
