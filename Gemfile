@@ -216,5 +216,6 @@ gem 'anthropic', git: "https://github.com/swombat/anthropic"
 gem 'http'
 gem 'rouge'
 gem 'kramdown'
+gem 'swombat_tools', git: "https://github.com/swombat/swombat_tools"
 
 # 🚅 super scaffolding will insert new oauth providers above this line.
