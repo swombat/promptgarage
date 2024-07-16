@@ -21,10 +21,6 @@ class Team < ApplicationRecord
   # 🚅 add callbacks above.
 
   # 🚅 add delegations above.
-  def site_admin?
-    team.id == ENV.fetch("SITE_ADMIN_TEAM_ID", 1)
-  end
-
   def available_models
     intelligence_credentials.collect { |credential| credential.models }.flatten
   end

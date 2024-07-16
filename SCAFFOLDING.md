@@ -42,5 +42,4 @@ Scaffolds in this list have not yet been executed.
 # Link Inputs and PromptExecutions with a many-to-many
 # Cannot do this yet... https://github.com/bullet-train-co/bullet_train/issues/1457
 rails generate super_scaffold:join_model InputItem::PromptExecution prompt_execution_id{class_name=PromptExecution} input_item_id{class_name=InputItem}
-rails generate super_scaffold:field PromptExecution inputs
 ```

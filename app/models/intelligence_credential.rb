@@ -20,7 +20,7 @@ class IntelligenceCredential < ApplicationRecord
   # 🚅 add delegations above.
 
   def valid_class_names
-    AIApi.registered_subclasses
+    LlmApi.registered_subclasses
   end
 
   def models
