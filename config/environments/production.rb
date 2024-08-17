@@ -107,7 +107,7 @@ Rails.application.configure do
   # if you want to change a default value specified here. Instead, simply re-specify the value in the section that
   # follows this section.
 
-  config.force_ssl = true
+  # config.force_ssl = true
 
   config.active_job.queue_adapter = :sidekiq
 
