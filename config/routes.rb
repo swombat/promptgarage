@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     # 🚅 super scaffolding will insert new api versions above this line.
   end
 
+  get "public/all_outputs/:prompt_id/:prompt_execution_id", to: "external#all_outputs", as: :external_all_outputs
+
   namespace :account do
     shallow do
       # user-level onboarding tasks.

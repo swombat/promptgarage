@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="theme-<%= BulletTrain::Themes::Light.color %> <%= "theme-secondary-#{BulletTrain::Themes::Light.secondary_color}" if BulletTrain::Themes::Light.secondary_color %>" lang="<%= I18n.locale %>">
+  <head>
+    <%= render 'shared/layouts/head' %>
+  </head>
+  <body class="pricing-page-background">
+    <div data-turbo="false">
+      <div class="background-fade-container">
+        <div class="background-fade medium-fade"></div>
+      </div>
+
+      <% if @back %>
+        <div class="m-5 -mb-5">
+          <%= link_to @back, class: 'button-secondary hover:no-underline group' do %>
+            <i class="ti ti-angle-left text-lg group-hover:no-underline"></i>
+            <span class="text-base ml-3 group-hover:underline"><%= t('navigation.back') %></span>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="m-5 sm:m-10 lg:m-20">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

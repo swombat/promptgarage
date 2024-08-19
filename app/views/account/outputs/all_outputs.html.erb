@@ -5,6 +5,14 @@
       <div class="space-y-4">
         <div class="group">
           <label class="block text-2xs uppercase font-semibold dark:text-white">
+            Share URL
+          </label>
+          <div class="dark:bg-zinc-800 bg-gray-100 p-2 my-0 rounded-md hidden group-hover:block">
+            <%= external_all_outputs_url(prompt_id: @prompt.obfuscated_id, prompt_execution_id: @execution.obfuscated_id) %>
+          </div>
+        </div>
+        <div class="group">
+          <label class="block text-2xs uppercase font-semibold dark:text-white">
             Compiled Parameters (?)
           </label>
           <div class="dark:bg-zinc-800 bg-gray-100 p-2 rounded-md hidden group-hover:block">
@@ -27,11 +35,12 @@
             <pre class="whitespace-pre-wrap highlight"><code><%= @execution.linked_executions.map(&:model).join(', ') %></code></pre>
           </div>
         </div>
-
       </div>
     <% end %>
 
-    <%= button_to "Execute All Again", [:account, @execution, :execute_all_again], method: :post, class: first_button_primary %>
+    <% if current_user.present? %>
+      <%= button_to "Execute All Again", [:account, @execution, :execute_all_again], method: :post, class: first_button_primary %>
+    <% end %>
 
     <% 
       grouped_outputs = @outputs.group_by { |output| output.prompt_execution.model }
