@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/swombat/swombat_tools
-  revision: 643a301313faabe9b49c87c1a34f66fcb803cee4
+  revision: f21a14dd2b0d5ddf647c14b60eadca1aed416ca7
   specs:
     swombat_tools (0.1.0)
       rails (>= 7.1.3.3)
