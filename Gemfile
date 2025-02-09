@@ -216,6 +216,10 @@ gem 'anthropic', git: "https://github.com/swombat/anthropic"
 gem 'http'
 gem 'rouge'
 gem 'kramdown'
-gem 'swombat_tools', git: "https://github.com/swombat/swombat_tools"
+# if File.directory?("../swombat_tools")
+#   gem "swombat_tools", path: "../swombat_tools"
+# else
+  gem "swombat_tools", git: "https://github.com/swombat/swombat_tools"
+# end
 
 # 🚅 super scaffolding will insert new oauth providers above this line.
